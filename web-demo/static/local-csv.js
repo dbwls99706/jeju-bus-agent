@@ -54,7 +54,7 @@ function mount(){
  function node(tag,text,attrs={}){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);return el;}
  host.classList.add('local-csv-panel');host.setAttribute('aria-labelledby','local-csv-title');
  host.append(node('h2','내 CSV 로컬 분석 · AI 미사용',{id:'local-csv-title'}));
- host.append(node('p','내 컴퓨터의 CSV를 브라우저 메모리에서만 읽습니다. 파일과 계산 결과를 서버에 전송하거나 저장하지 않습니다. 아래 합성 체험과 별개이며, AI가 아니라 정해진 계산식으로 집계합니다.'));
+ host.append(node('p','내 컴퓨터의 CSV를 브라우저 메모리에서만 읽습니다. 파일과 계산 결과를 서버에 전송하거나 저장하지 않습니다. 아래 서버 분석과 별개이며, AI가 아니라 정해진 계산식으로 집계합니다.'));
  host.append(node('p','UTF-8 CSV · 최대 5MB / 100,000행 · 필수 열: '+HEADERS.join(', '),{class:'local-csv-help'}));
  const label=node('label','분석할 CSV 파일 선택',{for:'local-csv-file'}),input=node('input',undefined,{id:'local-csv-file',type:'file',accept:'.csv,text/csv'});
  const clear=node('button','파일·결과 지우기',{type:'button'}),status=node('p','파일을 선택하면 바로 검사합니다.',{role:'status','aria-live':'polite'}),result=node('div',undefined,{class:'local-csv-result'});
