@@ -1,0 +1,16 @@
+# Local data and model weights
+/data/*
+!/data/.gitkeep
+/models/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+/tmp/
+/research/*.png
+/research/*.jpg
+/research/*.jpeg
+*.log
