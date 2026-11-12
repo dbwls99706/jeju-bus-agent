@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-12",
+  "environment": "Linux cloud Chromium, restored workspace fresh launcher server8765, tab2",
+  "checks": {
+    "default_result": "16시-18시의 값이 가장 커요:914.11; seven directly labelled zero-baseline bars",
+    "next_action_keyboard": "Enter on 조건 다시 고르기 focuses guided-input",
+    "plan_and_result_focus": [
+      "plan-card",
+      "result-title"
+    ],
+    "missing_case": "2024-01-01 기타 하루 평균: 미관측, no bar element, not0",
+    "minimum_case": "2024년1월 일반 요일별 가장 낮은: 월11376.6",
+    "jan_feb_general": "Direct comparison withheld, A13922.26/B14291.1, no numeric difference card",
+    "weekday_standardized": "Separate375.55명/일 and2.7%, raw direct comparison remains withheld"
+  },
+  "reflow": {
+    "200_percent": {
+      "inner_width": 590,
+      "client_width": 582,
+      "document_scroll_width": 582
+    },
+    "400_percent": {
+      "inner_width": 295,
+      "client_width": 291,
+      "document_scroll_width": 291,
+      "chart_client_width": 225,
+      "chart_scroll_width": 225,
+      "labels": "A13922.26 and B14291.1 visible; no horizontal chart scrolling required"
+    }
+  },
+  "final_zoom": "100% native popup verified",
+  "screenshots_local_qa_only": [
+    "research/result-295px.png",
+    "research/result-redesign.png"
+  ],
+  "limits": [
+    "Zero-valued observations unavailable in real input; actual browser zero case not tested (separate fixture DOM test by builder)",
+    "No physical mobile/exact320px emulation, Windows, print, screen-reader or AI inference validation",
+    "Scoped representative QA; claim verifier not rerun in this pass"
+  ]
+}
