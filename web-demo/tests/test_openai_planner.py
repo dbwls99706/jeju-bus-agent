@@ -116,3 +116,13 @@ class OpenAIPlannerTests(unittest.TestCase):
 
 
 if __name__=='__main__': unittest.main()
+
+
+class UsageMetadataTests(unittest.TestCase):
+    def test_usage_contains_only_counts_and_estimate(self):
+        import openai_planner as op
+        response={'status':'completed','output':[{'type':'message','role':'assistant','status':'completed','content':[{'type':'output_text','text':'{"dimension":"time"}'}]}],'usage':{'input_tokens':200,'output_tokens':10,'total_tokens':210}}
+        observed={}
+        with patch.dict(os.environ,{'AI_ENABLED':'1','OPENAI_API_KEY':'test-only'}),patch.object(op,'_http_post',return_value=response):
+            self.assertEqual(op.classify_question('시간대별 비교',reserve_call=lambda:True,usage_callback=observed.update),'time')
+        self.assertEqual(observed,{'input_tokens':200,'output_tokens':10,'total_tokens':210,'estimated_usd':0.000025})

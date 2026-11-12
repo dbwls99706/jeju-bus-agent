@@ -36,7 +36,7 @@ class AIEndpointTests(unittest.TestCase):
         self.assertEqual(data['plan']['dimension'],'weekday')
         self.classifier.assert_called_once()
         self.assertEqual(self.classifier.call_args.args,(self.payload['question'],))
-        self.assertEqual(set(self.classifier.call_args.kwargs),{'reserve_call'})
+        self.assertEqual(set(self.classifier.call_args.kwargs),{'reserve_call','usage_callback'})
         analysis=self.client.post('/api/analyze',json={**data['canonical_request'],'expected_plan':data['plan']})
         self.assertEqual(analysis.status_code,200,analysis.text)
         self.classifier.assert_called_once()

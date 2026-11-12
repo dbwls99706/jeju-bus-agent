@@ -121,7 +121,7 @@ def _http_post(payload, api_key):
     return json.loads(raw.decode('utf-8'), object_pairs_hook=_unique_object)
 
 
-def classify_question(question, *, reserve_call=None):
+def classify_question(question, *, reserve_call=None, usage_callback=None):
     """Reserve one durable quota unit, then make at most one fixed-endpoint call.
 
     No environment variable may change the endpoint, model or retry policy.
@@ -142,7 +142,15 @@ def classify_question(question, *, reserve_call=None):
         raise PlannerUnavailable('AI 호출 한도에 도달하여 요청하지 않았습니다.')
     try:
         response = _http_post(payload, key)
-        return parse_response(response)
+        dimension = parse_response(response)
+        usage = response.get('usage', {})
+        if callable(usage_callback) and isinstance(usage, dict):
+            counts = {k: usage.get(k) for k in ('input_tokens', 'output_tokens', 'total_tokens')}
+            if all(type(n) is int and 0 <= n <= 1_000_000 for n in counts.values()):
+                # Only aggregate token counts, never provider text/headers/credentials.
+                counts['estimated_usd'] = round((counts['input_tokens'] * 0.10 + counts['output_tokens'] * 0.50) / 1_000_000, 8)
+                usage_callback(counts)
+        return dimension
     except Exception:
         # Never propagate provider payloads, headers, questions or key-bearing exceptions.
         raise PlannerUnavailable('AI 응답을 사용할 수 없습니다. 다시 자동 호출하지 않았습니다.') from None

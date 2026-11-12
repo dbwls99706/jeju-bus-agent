@@ -1,4 +1,4 @@
-"""Public aggregate-data web app; no paid AI calls enabled."""
+"""Public aggregate-data web app with optional quota-guarded AI classification."""
 import os
 import re
 from datetime import date
@@ -112,13 +112,14 @@ def ai_plan():
     if not ai_ready():
         return jsonify(error='AI가 활성화되지 않았습니다. 기존 조건 선택 분석을 이용해 주세요.'),503
     try:
-        dimension=classify_question(question,reserve_call=RedisQuota.from_env().reserve_call)
+        usage={}
+        dimension=classify_question(question,reserve_call=RedisQuota.from_env().reserve_call,usage_callback=usage.update)
         if dimension=='reject':
             return jsonify(error='AI가 지원하는 분석 종류로 분류하지 못했습니다. 조건 선택 분석을 이용해 주세요.',ai_executed=True),422
         original=canonical_ai_request(data,dimension)
         plan=prepare_analysis(**original)
         return jsonify(plan=plan,canonical_request=original,ai_executed=True,ai_model=MODEL,
-                       ai_dimension=dimension,ai_scope='분석 종류만 AI 분류. 날짜·유형·계산방식은 화면 선택만 적용. 계산은 Python 규칙.')
+                       ai_dimension=dimension,ai_usage=usage,ai_scope='분석 종류만 AI 분류. 날짜·유형·계산방식은 화면 선택만 적용. 계산은 Python 규칙.')
     except (PlannerUnavailable,QuotaUnavailable):
         return jsonify(error='AI 호출이 허용되지 않거나 응답을 사용할 수 없습니다. 자동 재시도하지 않았습니다. 조건 선택 분석은 계속 사용할 수 있습니다.'),503
     except (ValueError,TypeError,KeyError):
@@ -137,7 +138,7 @@ def api(operation):
         elif operation=='analyze':result=analyze(*args,data['expected_plan'])
         elif operation=='claim-plan':result=prepare_claim_analysis(*args,data.get('claim'))
         else:result=analyze_claim(*args,data.get('claim'),data['expected_plan'])
-        result['demo_notice']=get_metadata()['data_notice']+' 현재 AI 미사용·규칙 기반 계산입니다.'
+        result['demo_notice']=get_metadata()['data_notice']+' 숫자 계산은 Python 규칙 기반입니다.'
         # A plan must remain byte-for-byte equivalent to the core plan for approval validation.
         if operation.endswith('plan'):result.pop('demo_notice',None)
         return jsonify(result)

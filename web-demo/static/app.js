@@ -66,7 +66,8 @@ $('ai-plan')?.addEventListener('click',async()=>{
   const original=response.canonical_request;
   $('question').value=original.question;
   showPlan(response.plan,original);
-  state.pending.ai={executed:true,model:response.ai_model,dimension:response.ai_dimension,scope:response.ai_scope};
+  state.pending.ai={executed:true,model:response.ai_model,dimension:response.ai_dimension,scope:response.ai_scope,usage:response.ai_usage};
+  if(response.ai_usage?.total_tokens)$('plan-detail').append(el('p',`이번 AI 호출: 입력 ${response.ai_usage.input_tokens} · 출력 ${response.ai_usage.output_tokens} tokens · 공개 단가 기준 약 $${response.ai_usage.estimated_usd} (세금·다른 서비스 제외)`));
   $('plan-detail').prepend(el('p',`AI 실행 완료: ${response.ai_model} · ${response.ai_scope}`),el('p',`입력한 질문: ${question}`));
   $('ai-status').textContent='AI 분류 완료. 화면 선택 조건으로 만든 계획을 확인한 뒤 계산을 승인해 주세요.';
  }catch(e){error(e.message);$('ai-status').textContent='사용 가능한 AI 계획을 받지 못했습니다. 자동 재시도하지 않았습니다.';}
