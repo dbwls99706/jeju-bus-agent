@@ -39,14 +39,14 @@ def home():
     if get_mode()=='real':
         html=html.replace('합성 예제 체험과 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석').replace('합성 예제와 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석')
         html=html.replace('실제 데이터·AI 없는 절차 시연','실제 제주 버스 승차 집계 분석 · 현재 AI 미사용')
-        html=html.replace('아래 체험은 합성 예제와 규칙만 사용합니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','아래 분석은 사용자 제공 실제 제주 버스 승차 집계를 사용합니다. 현재 계산은 규칙 기반이며 AI는 실행하지 않습니다. 원본 포털 현행 조건과 파일 버전 동일성은 대조하지 못했고 공식 2차 메타의 CC0 표기를 근거로 사용합니다.')
+        html=html.replace('아래 체험은 합성 예제와 규칙만 사용합니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','실제 제주 버스 승차 집계 37,057행을 분석합니다. 현재 AI 없이 검증된 계산식으로 집계합니다. 출처·이용조건과 해석 한계는 자료 정보에서 확인하세요.')
         html=html.replace('합성 예제 · AI 미사용','실제 집계 · AI 미사용').replace('합성 자료로 분석 절차를 체험하세요','실제 제주 버스 기록을 근거와 함께 살펴보세요')
     return html
 
 
 @app.get('/static/<name>')
 def static_file(name):
-    if name not in {'styles.css','app.js','local-csv.js','local-csv.css','favicon.svg','social-preview.png'}:return jsonify(error='찾을 수 없습니다.'),404
+    if name not in {'styles.css','app.js','favicon.svg','social-preview.png'}:return jsonify(error='찾을 수 없습니다.'),404
     return send_from_directory('static',name)
 
 @app.get('/api/catalog')

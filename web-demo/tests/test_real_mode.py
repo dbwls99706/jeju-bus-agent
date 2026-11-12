@@ -32,7 +32,8 @@ class RealModeTests(unittest.TestCase):
         self.assertIn('실제 제주 버스 승차 집계', html)
         self.assertIn('현재 AI 미사용', html)
         self.assertNotIn('실제 데이터·AI 없는 절차 시연', html)
-        self.assertIn('파일을 브라우저 안에서만 읽으며 서버에 보내지 않습니다', html)
+        self.assertNotIn('local-csv-panel', html)
+        self.assertNotIn('/static/local-csv.js', html)
 
     def test_raw_source_has_no_public_http_route(self):
         for path in ('/data/bus.csv', '/static/bus.csv', '/bus.csv'):
