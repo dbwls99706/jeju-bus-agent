@@ -40,13 +40,16 @@ def headers(response):
 @app.get('/')
 def home():
     html=(Path(__file__).parent/'static/index.html').read_text()
-    if get_mode()=='real':
-        html=html.replace('합성 예제 체험과 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석').replace('합성 예제와 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석')
-        html=html.replace('실제 데이터·AI 없는 절차 시연','실제 제주 버스 승차 집계 분석 · 현재 AI 미사용')
-        html=html.replace('아래 체험은 합성 예제와 규칙만 사용합니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','실제 제주 버스 승차 집계 37,057행을 분석합니다. 현재 AI 없이 검증된 계산식으로 집계합니다. 출처·이용조건과 해석 한계는 자료 정보에서 확인하세요.')
-        html=html.replace('합성 예제 · AI 미사용','실제 집계 · AI 미사용').replace('합성 자료로 분석 절차를 체험하세요','실제 제주 버스 기록을 근거와 함께 살펴보세요')
-    if ai_ready():
-        html=html.replace('현재 AI 미사용','기본 계산은 AI 미사용 · AI 분류 선택 가능').replace('현재 AI 없이 검증된 계산식으로 집계합니다.','기본 집계는 검증된 계산식으로 처리합니다. 아래 별도 AI 버튼으로 분석 종류 분류를 요청할 수 있습니다.').replace('실제 집계 · AI 미사용','실제 집계 · AI 분류 선택 가능')
+    real = get_mode() == 'real'
+    ready = ai_ready()
+    title = '실제 제주 버스 승차 집계' if real else '실제 데이터·AI 없는 절차 시연'
+    mode = 'AI 분류 선택 가능' if ready else '현재 AI 미사용'
+    notice = ('과거 집계 37,057행 · 실시간 정보 아님' if real else '합성 예제로 분석 절차만 체험합니다.')
+    detail = ('숫자는 검증된 계산식으로 집계합니다. 출처·이용조건은 아래 자료 상세에서 확인하세요.' if real else '실제 제주 승차 기록이나 AI 응답이 아닙니다.')
+    old_start = html.index('<div class="mode-notice"')
+    old_end = html.index('</div>', old_start) + len('</div>')
+    html = html[:old_start] + f'<div class="mode-notice" role="note"><strong>{notice}</strong><details><summary>자료와 분석 방식</summary><p>{title} · {mode}. {detail}</p></details></div>' + html[old_end:]
+    html = html.replace('합성 예제 · AI 미사용', ('실제 집계' if real else '합성 예제') + ' · ' + mode)
     return html
 
 

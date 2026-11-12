@@ -1,0 +1,38 @@
+{
+  "environment": "Linux cloud Chromium localhost8765 tab2",
+  "checks": {
+    "catalog_details": "closed initially; Enter opened5 warnings; Space closed",
+    "photo_details": "Enter opened disclaimer; Space closed; author2022 andCC0 outside disclosure",
+    "result_details": "closed initially; Enter opened8 paragraphs; Space closed; visible keyboard focus ring",
+    "core_cautions_visible": [
+      "실시간 버스 정보가 아니에요.",
+      "기록 없음은0명이 아니에요.",
+      "노선·혼잡도는 알 수 없어요."
+    ],
+    "representative_default": "16시-18시914.11, result-title focused after keyboard approval",
+    "period_quality": "JanFeb weekday-composition direct comparison withholding visible outside collapsed warnings",
+    "raw_totals": [
+      431590,
+      414442
+    ]
+  },
+  "reflow": {
+    "200_percent": {
+      "viewport": 590,
+      "client": 582,
+      "scroll": 582
+    },
+    "400_percent_expanded_warning": {
+      "viewport": 295,
+      "client": 291,
+      "scroll": 291,
+      "keyboard_toggle": "passed"
+    }
+  },
+  "final_zoom": "100% native popup confirmed",
+  "limits": [
+    "Not real mobile or exact320px",
+    "No Windows, print, screenreader or model-inference validation",
+    "Standardized numeric calculation not rerun in this disclosure-only pass; visible quality distinction checked"
+  ]
+}

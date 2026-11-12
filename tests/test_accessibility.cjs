@@ -11,10 +11,12 @@ for(const selector of ['.brand img','.empty-icon img']){const icon=doc.querySele
 assert(doc.querySelector('.brand').textContent.includes('버스여울'));
 
 assert(doc.querySelector('#chart').compareDocumentPosition(doc.querySelector('#claim-card'))&4);
-assert(!doc.querySelector('#warnings').closest('details'));
+assert(doc.querySelector('#warnings').closest('details'));assert(!doc.querySelector('#warnings').closest('details').open);assert(doc.querySelector('#catalog-warnings').closest('details'));assert.equal(doc.querySelectorAll('.essential-notes li').length,3);
 assert(!doc.querySelector('.result-caution').closest('details'));
 for(const e of doc.querySelectorAll('input,select,textarea'))assert(e.id&&doc.querySelector(`label[for="${e.id}"]`),e.id);
 const details=[...doc.querySelectorAll('details')];details[0].open=true;const before=details.map(e=>e.open);
 w.dispatchEvent(new w.Event('beforeprint'));assert(details.every(e=>e.open));
 w.dispatchEvent(new w.Event('afterprint'));assert.deepEqual(details.map(e=>e.open),before);
 console.log('PASS: Korean document, icon, advanced disclosure, chart hierarchy, persistent warnings, form labels, print detail restoration');
+
+const photo=doc.querySelector('img[src="/static/stone-park-01.jpg"]');assert(photo);assert(photo.alt.includes('돌'));const caption=doc.querySelector('figcaption');assert(caption&&caption.textContent.includes('CC0')&&caption.textContent.includes('Bernard Gagnon')&&caption.textContent.includes('무장애'));
