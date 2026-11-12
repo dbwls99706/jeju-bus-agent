@@ -1,10 +1,12 @@
-"""Isolated synthetic-data web demonstration; not the contest runtime."""
+"""Public aggregate-data web app; no paid AI calls enabled."""
 import os
 from urllib.parse import urlsplit
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.exceptions import HTTPException
 from agent import catalog, prepare_analysis, analyze, prepare_claim_analysis, analyze_claim
 from planner import QuestionScopeError
+from data_source import get_mode, get_metadata
+from pathlib import Path
 app = Flask(__name__, static_folder=None)
 app.config['MAX_CONTENT_LENGTH'] = 16384
 
@@ -32,7 +34,15 @@ def headers(response):
     return response
 
 @app.get('/')
-def home(): return send_from_directory('static','index.html')
+def home():
+    html=(Path(__file__).parent/'static/index.html').read_text()
+    if get_mode()=='real':
+        html=html.replace('합성 예제 체험과 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석').replace('합성 예제와 브라우저 내 CSV 분석', '실제 제주 버스 집계와 브라우저 내 CSV 분석')
+        html=html.replace('실제 데이터·AI 없는 절차 시연','실제 제주 버스 승차 집계 분석 · 현재 AI 미사용')
+        html=html.replace('아래 체험은 합성 예제와 규칙만 사용합니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','아래 분석은 사용자 제공 실제 제주 버스 승차 집계를 사용합니다. 현재 계산은 규칙 기반이며 AI는 실행하지 않습니다. 원본 포털 현행 조건과 파일 버전 동일성은 대조하지 못했고 공식 2차 메타의 CC0 표기를 근거로 사용합니다.')
+        html=html.replace('합성 예제 · AI 미사용','실제 집계 · AI 미사용').replace('합성 자료로 분석 절차를 체험하세요','실제 제주 버스 기록을 근거와 함께 살펴보세요')
+    return html
+
 
 @app.get('/static/<name>')
 def static_file(name):
@@ -42,7 +52,7 @@ def static_file(name):
 @app.get('/api/catalog')
 def metadata():
     result=catalog()
-    result['data_kind']='synthetic'
+    result['data_kind']=get_mode()
     result['ai_enabled']=False
     return jsonify(result)
 
@@ -59,12 +69,12 @@ def api(operation):
         elif operation=='analyze':result=analyze(*args,data['expected_plan'])
         elif operation=='claim-plan':result=prepare_claim_analysis(*args,data.get('claim'))
         else:result=analyze_claim(*args,data.get('claim'),data['expected_plan'])
-        result['demo_notice']='합성 데이터·규칙 모드 시연. 실제 데이터나 AI 응답이 아닙니다.'
+        result['demo_notice']=get_metadata()['data_notice']+' 현재 AI 미사용·규칙 기반 계산입니다.'
         # A plan must remain byte-for-byte equivalent to the core plan for approval validation.
         if operation.endswith('plan'):result.pop('demo_notice',None)
         return jsonify(result)
     except (QuestionScopeError,ValueError,TypeError,AttributeError):
-        return jsonify(error='질문과 선택 조건을 확인하세요. 합성 자료 범위는 2024년 1~2월입니다.'),400
+        return jsonify(error='질문과 선택 조건을 확인하세요. 자료 범위는 화면의 자료 정보를 확인하세요.'),400
 
 @app.errorhandler(Exception)
 def errors(error):

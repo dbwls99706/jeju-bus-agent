@@ -6,16 +6,17 @@ from collections import Counter,defaultdict
 from functools import lru_cache
 from planner import QuestionScopeError
 from query import interpret
+from data_source import source_path, get_mode, get_metadata, verify_bytes, read_raw
 SLOTS={'01시-06시':6,'07시-09시':3,'10시-12시':3,'13시-15시':3,'16시-18시':3,'19시-21시':3,'22시-24시':3}
 DAYS='월화수목금토일'
-EXPECTED_SHA256='f676552326bd5e8c9d6c2d00efd00f9068ad89a1f5efb8bf84c26a075e45369d'
-WARNINGS=['합성 예시 데이터·규칙 모드 시연입니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','승차 집계는 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.','이 자료에는 정류장·노선·지역 열이 없어 장소별 안내나 자료의 공간적 범위를 확정할 수 없습니다.','미기록 조합은 0으로 대체하지 않습니다. 관측률이 다른 그룹의 비교는 누락 영향을 받습니다.','분석 기간과 유형은 확인한 계획에 명시됩니다. 질문에 명시한 날짜·유형은 화면 필터보다 우선합니다.',
- '2024년 1~2월 날짜를 사용한 합성 예시이며 실제 승차 기록이 아닙니다.']
-def source_path():return Path(__file__).parent/'data/synthetic.csv'
+COMMON_WARNINGS=['승차 집계는 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.','이 자료에는 정류장·노선·지역 열이 없어 장소별 안내나 자료의 공간적 범위를 확정할 수 없습니다.','미기록 조합은 0으로 대체하지 않습니다. 관측률이 다른 그룹의 비교는 누락 영향을 받습니다.','분석 기간과 유형은 확인한 계획에 명시됩니다. 질문에 명시한 날짜·유형은 화면 필터보다 우선합니다.']
+def source_warnings():
+ m=get_metadata()
+ return [m['data_notice']]+COMMON_WARNINGS+[m['license_caveat']]
 @lru_cache(maxsize=2)
-def read_cached(path,mtime,size):
- raw=Path(path).read_bytes();rows=[];keys=set()
- if EXPECTED_SHA256 and hashlib.sha256(raw).hexdigest()!=EXPECTED_SHA256:raise ValueError('CSV hash differs from verified source')
+def read_cached(path,mtime,size,source_mode):
+ raw=read_raw(path);rows=[];keys=set()
+ verify_bytes(raw,source_mode)
  for n,r in enumerate(csv.DictReader(raw.decode('utf-8-sig').splitlines()),2):
   if set(r)!={'base_date','day_of_week','base_hour','user_type','user_count'}:raise ValueError('CSV schema mismatch')
   date=datetime.strptime(r['base_date'],'%Y%m%d').date();count=int(r['user_count'])
@@ -26,10 +27,10 @@ def read_cached(path,mtime,size):
  if not rows:raise ValueError('empty CSV')
  return rows,hashlib.sha256(raw).hexdigest()
 def load():
- p=source_path();s=p.stat();return read_cached(str(p.resolve()),s.st_mtime_ns,s.st_size)
+ p=source_path();s=p.stat();return read_cached(str(p.resolve()),s.st_mtime_ns,s.st_size,get_mode())
 def catalog():
  rows,sha=load();dates=sorted({r['date'] for r in rows});types=sorted({r['user_type'] for r in rows},key=lambda s:(s!='일반',s));expected=len(dates)*len(SLOTS)*len(types)
- return {'min_date':str(dates[0]),'max_date':str(dates[-1]),'rows':len(rows),'dates':len(dates),'user_types':types,'time_slots':list(SLOTS),'missing_combinations':expected-len(rows),'warnings':WARNINGS,'sha256':sha,'default_user_type':'일반','planner_mode':'synthetic_rules_demo'}
+ return {'min_date':str(dates[0]),'max_date':str(dates[-1]),'rows':len(rows),'dates':len(dates),'user_types':types,'time_slots':list(SLOTS),'missing_combinations':expected-len(rows),'warnings':source_warnings(),'sha256':sha,'default_user_type':'일반','planner_mode':'synthetic_rules_demo' if get_mode()=='synthetic' else 'rules',**get_metadata()}
 def prepare_analysis(question,start_date=None,end_date=None,user_type='일반'):
  return interpret(question,start_date,end_date,user_type,catalog())
 
@@ -40,7 +41,7 @@ def analyze(question,start_date=None,end_date=None,user_type='일반',expected_p
  if prepared['kind']=='period_compare':
   from period_compare import compare_periods
   periods=prepared['periods']
-  source={'name':'synthetic.csv','source_url':'','metadata_url':'','provenance':'절차 시연용 합성 자료. 실제 승차 기록 아님.'}
+  source=get_metadata()
   comparison_tool=compare_periods
   if prepared.get('comparison_method')=='weekday_standardized':
    from weekday_standardize import standardize_periods
@@ -74,7 +75,7 @@ def analyze(question,start_date=None,end_date=None,user_type='일반',expected_p
   value=total if prepared['metric']=='total' else total/nd if prepared['metric']=='daily_mean' and nd and total is not None else normalized
   table.append({'label':label,'total':total,'observed_cells':len(group),'expected_cells':expected,'coverage':round(len(group)/expected,6) if expected else None,'hours':hours,'per_hour':round(normalized,3) if hours and normalized is not None else None,'value':round(value,3) if value is not None else None,'days':nd})
  expected=len(dates)*len(SLOTS)*len(chosen);missing=expected-len(selected)
- warnings=list(WARNINGS)+prepared['notes']
+ warnings=source_warnings()+prepared['notes']
  if warning:warnings.append(warning)
  if missing:warnings.append(f'선택 범위 {expected:,}개 날짜×시간×유형 조합 중 {missing:,}개가 미기록입니다. 표시값은 기록 합계의 환산이며 실제 평균의 추정치가 아닙니다.')
  
@@ -108,7 +109,7 @@ def analyze(question,start_date=None,end_date=None,user_type='일반',expected_p
  return {'title':title,'answer':f'{a}~{b}, 유형 '+', '.join(chosen)+f', {len(selected):,}개 기록을 분석했습니다. {formula}으로 비교하며 미기록을 0으로 채우지 않았습니다.',
   'quality':quality,'insights':insights,'mode':mode,'plan':{**prepared,'formula':formula},'chart':{'labels':labels,'values':[t['value'] for t in table],'unit':unit},'table':table,'warnings':warnings,
   'steps':[{'tool':'validate_csv','detail':'스키마·날짜요일·중복셀·음수 검사 및 파일 해시 기록'},{'tool':'plan_query','detail':f'{mode}: {dimension} 도구 선택'},{'tool':'filter_rows','detail':f'날짜 {len(dates)}일, 유형 {len(chosen)}개'},{'tool':'aggregate_counts','detail':formula},{'tool':'audit_missing','detail':f'{missing:,}/{expected:,} 조합 미기록'}, {'tool':'verify_aggregate','detail':'독립 합계 보존 확인: '+str(observed_total)}, {'tool':'assess_comparability','detail':quality['reason']}, {'tool':'summarize_evidence','detail':'검증 결과에 따라 근거 요약 또는 순위 해석 보류'}],
-  'sources':[{'name':'synthetic.csv','sha256':sha,'source_url':'','metadata_url':'','provenance':'절차 시연용 합성 자료. 실제 승차 기록 아님.','rows_used':len(selected),'row_number_samples':[r['row'] for r in selected[:10]]}],
+  'sources':[{**get_metadata(),'sha256':sha,'rows_used':len(selected),'row_number_samples':[r['row'] for r in selected[:10]]}],
   'stats':{'rows':len(selected),'total':observed_total if selected else None,'days':len(dates),'missing_combinations':missing,'observed_cells':len(selected),'expected_cells':expected,'coverage':round(len(selected)/expected,6)}}
 
 def prepare_claim_analysis(question,start_date=None,end_date=None,user_type='일반',claim=None):

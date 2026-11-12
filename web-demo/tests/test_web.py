@@ -1,7 +1,9 @@
 import unittest,os
 from app import app
+from unittest.mock import patch
 class WebTests(unittest.TestCase):
- def setUp(self):self.c=app.test_client()
+ def setUp(self):
+  self.env=patch.dict(os.environ,{'DATA_MODE':'synthetic'});self.env.start();self.addCleanup(self.env.stop);self.c=app.test_client()
  def test_home(self):
   r=self.c.get('/');self.assertEqual(r.status_code,200);self.assertIn('실제 데이터·AI 없는 절차 시연',r.text)
  def test_catalog(self):

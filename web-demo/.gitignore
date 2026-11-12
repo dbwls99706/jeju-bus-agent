@@ -2,3 +2,6 @@
 __pycache__/
 .env
 .vercel/
+
+# Published gzip archive is intentional; uncompressed local copies remain ignored.
+/data/bus.csv
