@@ -1,0 +1,47 @@
+{
+  "pairs": {
+    "body": {
+      "foreground": "#203a30",
+      "background": "#f0f4ec",
+      "contrast": 11.032
+    },
+    "muted": {
+      "foreground": "#4e5e51",
+      "background": "#fffefa",
+      "contrast": 6.836
+    },
+    "primary": {
+      "foreground": "#ffffff",
+      "background": "#24543f",
+      "contrast": 8.696
+    },
+    "guided": {
+      "foreground": "#4d604e",
+      "background": "#f0f5ea",
+      "contrast": 6.117
+    },
+    "notice": {
+      "foreground": "#64533a",
+      "background": "#fff8e9",
+      "contrast": 6.991
+    },
+    "caution": {
+      "foreground": "#55492f",
+      "background": "#f6f0df",
+      "contrast": 7.75
+    },
+    "secondary": {
+      "foreground": "#285339",
+      "background": "#fffefa",
+      "contrast": 8.719
+    },
+    "eyebrow": {
+      "foreground": "#3d5d43",
+      "background": "#e4eddf",
+      "contrast": 6.143
+    }
+  },
+  "scope": "Representative fixed text colors, not whole WCAG certification",
+  "external_code_installed": false,
+  "backend_changed": false
+}

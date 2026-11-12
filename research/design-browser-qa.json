@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-12",
+  "environment": "Linux cloud Chromium CUA localhost:8768, fresh tab49",
+  "checks": {
+    "new_visual_design_pixel_inspection": "passed",
+    "body_font_px": 18,
+    "brand_svg": {
+      "src": "/static/favicon.svg",
+      "natural_width": 150,
+      "rendered_width": 48,
+      "note": "SVG loaded normally. 48 is rendered width, not natural width."
+    },
+    "jan_feb_general_plan_confirmation": "passed with Enter",
+    "initial_plan_focus": "plan-card",
+    "result_after_approval_focus": "result-title",
+    "raw_totals": [
+      431590,
+      414442
+    ],
+    "raw_daily_means_display": [
+      13922.26,
+      14291.1
+    ],
+    "standardization_second_confirmation": "passed with Enter",
+    "standardization_result_focus": "result-title",
+    "standardized_daily_display": [
+      13899.41,
+      14274.96
+    ],
+    "standardized_difference": 375.55,
+    "standardized_percent_display": 2.7
+  },
+  "reflow": {
+    "100_percent": {
+      "inner_width": 1180,
+      "document_scroll_width": 1165
+    },
+    "200_percent": {
+      "inner_width": 590,
+      "client_width": 582,
+      "document_scroll_width": 582,
+      "global_horizontal_overflow": false
+    },
+    "400_percent": {
+      "inner_width": 295,
+      "client_width": 291,
+      "document_scroll_width": 291,
+      "global_horizontal_overflow": false,
+      "standardization_card_readable_by_vertical_scrolling": true
+    }
+  },
+  "final_state": {
+    "zoom": "100%, native screenshot verified",
+    "native_window_id": 29360131,
+    "tab_id": 49,
+    "url": "http://127.0.0.1:8768/",
+    "result": "JanFeb general standardized comparison",
+    "existing_tabs_not_closed": true
+  },
+  "local_qa_only_screenshots": [
+    "research/design-plan.png",
+    "research/design-400.png"
+  ],
+  "limitations": [
+    "Not physical mobile or exactly320px emulation",
+    "No Windows, screen-reader, print or AI inference validation",
+    "Scoped representative functional and reflow checks, not full application coverage"
+  ]
+}

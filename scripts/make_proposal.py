@@ -96,7 +96,7 @@ y=675
 y=block(y,'참가 요청과 개발 지원','참가 요청자는 자료와 개선 방향·검토 요청을 전달했습니다. 코드 구현·수정, 시험, 독립 검토, 통계 검산, 문서 제작과 브라우저 점검에 ChatGPT 지원을 사용했습니다. 참가자의 직접 코딩 범위나 확인하지 못한 개발지원 모델 버전을 추정하지 않습니다.')
 y=block(y,'실행 중 AI와 외부 서비스','Qwen2.5-1.5B-Instruct 고정 리비전은 도구 분류를 담당합니다. 집계·표준화·숫자 주장은 고정 도구로 계산합니다. 앱 실행 중 외부 AI API·키·유료 호출은 없고 모델 최초 설치는 Hugging Face, 패키지 설치는 공식 PyPI·PyTorch 저장소를 이용합니다.')
 y=block(y,'데이터와 외부 코드','실행 데이터는 제공받은 버스 CSV 한 파일입니다. 날씨·노선·인구 자료는 결합하지 않았고 비공개 대회목록은 제출하지 않습니다. 앱 코드는 ChatGPT 지원으로 작성·수정했으며 아래 오픈소스 기능을 사용합니다. 합성 시험자료는 실제 관측으로 제시하지 않습니다.')
-y=block(y,'오픈소스·라이선스','Python 표준라이브러리(PSF), Qwen·Transformers5.22.2·huggingface_hub2.4.0(Apache-2.0), PyTorch2.15.0+cpu(배포물 복합 라이선스), socksio1.0.0(MIT). 제작·시험에는 ReportLab4.4.9(BSD), NanumGothic(OFL), jsdom26.1.0(MIT), Node.js를 사용했습니다. 정확한 라이선스 식·용도·설치환경 목록은 ZIP의 AI_AND_EXTERNAL_RESOURCES.md에 있습니다.')
+y=block(y,'오픈소스·라이선스','Python 표준라이브러리(PSF), Qwen·Transformers5.22.2·huggingface_hub2.4.0(Apache-2.0), PyTorch2.15.0+cpu(배포물 복합 라이선스), socksio1.0.0(MIT). 제작·시험에는 ReportLab4.4.9(BSD), NanumGothic(OFL), jsdom26.1.0(MIT), Node.js를 사용했습니다. 정확한 라이선스·설치 목록은 ZIP의 AI_AND_EXTERNAL_RESOURCES.md, Carbon·GOV.UK 디자인 참고는 DESIGN_REFERENCES.md에 있습니다. 외부 UI 코드 설치 없이 원칙만 참고했습니다.')
 y=block(y,'확인과 책임 범위','코드·문서 전체를 참가자가 직접 작성했다거나 AI 결과가 자동으로 정확하다고 주장하지 않습니다. 검증한 항목과 미확인을 구분했으며 최종 제출 여부와 제출 내용 확인은 참가자의 판단 대상입니다.')
 
 def flowbox(top,number,title,text):
