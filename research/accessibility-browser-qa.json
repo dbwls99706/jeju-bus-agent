@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-12",
+  "environment": "Linux cloud Chromium via CUA; localhost:8768",
+  "observed_brand": "버스여울",
+  "checks": {
+    "body_font_px": 18,
+    "guided_button_height_px": 56.5,
+    "guided_summary_jan2024_general_daily_mean": 13922.258,
+    "guided_summary_total": 431590,
+    "keyboard_enter_plan_and_confirmation": "passed",
+    "plan_focus": "plan-card",
+    "free_question_details_expand": "passed",
+    "period_comparison_confirmation": "passed",
+    "standardization_requires_second_confirmation": "passed",
+    "standardization_difference_observed": 375.55
+  },
+  "responsive": {
+    "initial_200_percent_failure": {
+      "viewport_css_width": 590,
+      "client_width": 582,
+      "document_scroll_width": 850,
+      "cause_observed": "grid children min-width:auto, width836.5px"
+    },
+    "fix_by_ui_agent": "grid minmax(0,1fr), child min-width:0 and max-width:100%",
+    "after_fix_200_percent": {
+      "viewport_css_width": 590,
+      "client_width": 582,
+      "document_scroll_width": 582,
+      "passed": true
+    },
+    "after_fix_400_percent": {
+      "viewport_css_width": 295,
+      "client_width": 291,
+      "document_scroll_width": 291,
+      "guided_plan_and_confirm": "passed",
+      "result_table_rows": 7,
+      "chart_container_client_width": 229,
+      "chart_internal_scroll_width": 600,
+      "global_horizontal_overflow": false
+    },
+    "final_browser_zoom": "100%",
+    "window_resize_attempt": "no size change; tested narrow CSS viewport using browser zoom instead"
+  },
+  "screenshots_local_qa_only": [
+    "research/accessibility-plan.png",
+    "research/accessibility-200-overflow.png",
+    "research/accessibility-295px.png"
+  ],
+  "limitations": [
+    "Not physical mobile-device or exactly320px emulation validation",
+    "No screen-reader usability study",
+    "Not Windows or center-PC validation",
+    "No AI inference or print validation",
+    "200% fix and narrow reflow tested after CSS patch; full standardized comparison exercised before CSS-only patch"
+  ]
+}

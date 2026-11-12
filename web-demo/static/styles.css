@@ -13,3 +13,5 @@
 @media print{body{font-size:12pt}#chart svg{min-width:0}.save-actions,.skip-link{display:none!important}.workspace{display:block}.quality-panel p,.quality-panel li{font-size:11pt}table{font-size:9pt}.result-caution{font-size:11pt}.warnings p{font-size:11pt}.trace li,.trace p,#sources,#sources small{font-size:10pt}}
 /* Keep supporting text readable and contain intrinsic chart/table widths on zoom. */
 p.muted{font-size:17px;line-height:1.7}.workspace>.main-panel,.workspace>.sources-panel{min-width:0;max-width:100%}.main-panel>*,.sources-panel>*{max-width:100%}#chart,.table-scroll{min-width:0;max-width:100%}.guided-fields>label{min-width:0}.guided-fields select{max-width:100%}@media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr)}}@media print{p.muted{font-size:11pt}}
+
+.brand img.brand-icon,.empty-icon img{width:48px;height:48px;flex-shrink:0;display:block}.empty-icon img{margin-inline:auto}

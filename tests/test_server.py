@@ -24,8 +24,12 @@ class HttpTests(unittest.TestCase):
   with self.assertRaises(HTTPError) as c:urlopen(self.base+'/.env')
   self.assertEqual(c.exception.code,404)
  def test_static(self):
-  for path in ['/','/static/app.js','/static/styles.css']:
-   with urlopen(self.base+path) as r:self.assertEqual(r.status,200)
+  for path in ['/','/static/app.js','/static/styles.css','/static/favicon.svg','/static/thumbnail.svg']:
+   with urlopen(self.base+path) as r:
+    self.assertEqual(r.status,200)
+    if path.endswith('.svg'):
+     self.assertEqual(r.headers.get_content_type(),'image/svg+xml')
+     self.assertIn(b'<svg',r.read())
  def test_plan(self):
   with urlopen(Request(self.base+'/api/plan',data=json.dumps({'question':'경로 시간대'}).encode())) as r:self.assertEqual(json.load(r)['user_types'],['경로'])
  def test_plan_mismatch(self):

@@ -17,9 +17,9 @@ class Handler(BaseHTTPRequestHandler):
         path=urlsplit(self.path).path
         try:
             if path=='/api/catalog': return self.send(200,catalog())
-            name={'/':'index.html','/index.html':'index.html','/static/styles.css':'styles.css','/static/app.js':'app.js'}.get(path)
+            name={'/':'index.html','/index.html':'index.html','/static/styles.css':'styles.css','/static/app.js':'app.js','/static/favicon.svg':'favicon.svg','/static/thumbnail.svg':'thumbnail.svg'}.get(path)
             if not name:return self.send(404,{'error':'찾을 수 없습니다.'})
-            kinds={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'}
+            kinds={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml'}
             p=BASE/'static'/name;return self.send(200,p.read_bytes(),kinds[p.suffix])
         except Exception:return self.send(500,{'error':'자료를 읽지 못했습니다. 설치 상태와 데이터 해시를 확인하세요.'})
     def do_POST(self):

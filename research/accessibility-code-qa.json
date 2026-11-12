@@ -1,0 +1,56 @@
+{
+  "contrast_pairs": {
+    "body": {
+      "foreground": "#213b2c",
+      "background": "#f6f4eb",
+      "contrast": 11.038
+    },
+    "muted": {
+      "foreground": "#4e5e51",
+      "background": "#fffef9",
+      "contrast": 6.832
+    },
+    "primary": {
+      "foreground": "#ffffff",
+      "background": "#275238",
+      "contrast": 8.935
+    },
+    "warning": {
+      "foreground": "#65451d",
+      "background": "#fff3dc",
+      "contrast": 7.887
+    },
+    "caution": {
+      "foreground": "#534830",
+      "background": "#f5f0df",
+      "contrast": 7.877
+    },
+    "notice": {
+      "foreground": "#534830",
+      "background": "#f1eddb",
+      "contrast": 7.648
+    },
+    "example": {
+      "foreground": "#275238",
+      "background": "#fffef9",
+      "contrast": 8.849
+    }
+  },
+  "python_regressions": 205,
+  "dom_checks": [
+    "Korean document",
+    "form labels",
+    "persistent limits",
+    "chart before advanced features",
+    "print disclosure state restored",
+    "22 guided combinations",
+    "standardization confirm",
+    "claim confirm"
+  ],
+  "limits": [
+    "Not full WCAG audit",
+    "No older-adult user test",
+    "No full screen-reader test"
+  ],
+  "reference": "https://www.w3.org/WAI/WCAG22/quickref/"
+}
