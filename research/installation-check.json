@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "item": "Python3.10+",
+      "ok": true,
+      "detail": "3.12.14"
+    },
+    {
+      "item": "운영체제",
+      "ok": true,
+      "detail": "Linux"
+    },
+    {
+      "item": "원본 스키마·SHA-256",
+      "ok": true,
+      "detail": "37057행, 2023-12-25~2025-10-26"
+    },
+    {
+      "item": "torch",
+      "ok": false,
+      "detail": "AI 모드에 필요; 규칙 모드에는 불필요"
+    },
+    {
+      "item": "transformers",
+      "ok": false,
+      "detail": "AI 모드에 필요; 규칙 모드에는 불필요"
+    },
+    {
+      "item": "로컬 모델 파일",
+      "ok": false,
+      "detail": "AI 모드에 필요; 설치 스크립트로 고정 리비전 다운로드"
+    }
+  ],
+  "note": "설치 파일 점검이며 Windows UI·모델 추론·센터PC 실측을 대신하지 않습니다."
+}

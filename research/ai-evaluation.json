@@ -1,0 +1,104 @@
+{
+  "model": "Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "dtype": "bfloat16",
+  "device": "CPU",
+  "results": [
+    {
+      "question": "어느 시간대에 많이 타나요?",
+      "expected": "time",
+      "actual": "time",
+      "exact": true,
+      "seconds": 6.452,
+      "error": null
+    },
+    {
+      "question": "평일과 주말을 비교해줘",
+      "expected": "weekday",
+      "actual": "weekday",
+      "exact": true,
+      "seconds": 0.896,
+      "error": null
+    },
+    {
+      "question": "월별 추이를 보여줘",
+      "expected": "month",
+      "actual": "month",
+      "exact": true,
+      "seconds": 0.906,
+      "error": null
+    },
+    {
+      "question": "이용자 유형을 비교해줘",
+      "expected": "user_type",
+      "actual": "user_type",
+      "exact": true,
+      "seconds": 0.838,
+      "error": null
+    },
+    {
+      "question": "아침과 저녁의 기록이 궁금해",
+      "expected": "time",
+      "actual": "weekday",
+      "exact": false,
+      "seconds": 0.987,
+      "error": null
+    },
+    {
+      "question": "토요일과 일요일을 보고 싶어",
+      "expected": "weekday",
+      "actual": "weekday",
+      "exact": true,
+      "seconds": 0.829,
+      "error": null
+    },
+    {
+      "question": "매달 승차 기록이 어떻게 달라졌어?",
+      "expected": "month",
+      "actual": "month",
+      "exact": true,
+      "seconds": 1.1,
+      "error": null
+    },
+    {
+      "question": "경로와 일반은 어떻게 달라?",
+      "expected": "user_type",
+      "actual": "user_type",
+      "exact": true,
+      "seconds": 1.015,
+      "error": null
+    },
+    {
+      "question": "하루 중 언제 이용이 많았나요?",
+      "expected": "time",
+      "actual": "weekday",
+      "exact": false,
+      "seconds": 1.191,
+      "error": null
+    },
+    {
+      "question": "일주일 중 어느 날의 기록이 높아?",
+      "expected": "weekday",
+      "actual": "weekday",
+      "exact": true,
+      "seconds": 1.133,
+      "error": null
+    },
+    {
+      "question": "연중 변화 추세를 알려줘",
+      "expected": "month",
+      "actual": "month",
+      "exact": true,
+      "seconds": 0.852,
+      "error": null
+    },
+    {
+      "question": "나이대마다 차이가 있어?",
+      "expected": "user_type",
+      "actual": "weekday",
+      "exact": false,
+      "seconds": 0.85,
+      "error": null
+    }
+  ]
+}

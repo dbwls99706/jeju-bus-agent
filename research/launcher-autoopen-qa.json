@@ -1,0 +1,39 @@
+{
+  "environment": "Linux cloud desktop, native Terminal and Chromium",
+  "test_date": "2026-11-12",
+  "prior_attempt": {
+    "port": 8766,
+    "existing_8765_preserved": true,
+    "source_records": 37057,
+    "mode": "rules",
+    "automatic_browser_open": false,
+    "message": "준비 상태를 확인하지 못해 브라우저를 열지 않았습니다",
+    "manual_navigation_success": true
+  },
+  "change_reported_by_builder": "Readiness probe uses urllib ProxyHandler({}) to bypass environment proxies for loopback requests.",
+  "retest": {
+    "command": "프로젝트 폴더에서: unset BUS_MODEL_DIR && python3 launch.py",
+    "existing_ports_preserved": [
+      8765,
+      8766
+    ],
+    "new_port": 8767,
+    "catalog_http_status": 200,
+    "automatic_browser_open": true,
+    "manual_navigation_used": false,
+    "observed_address": "http://127.0.0.1:8767/",
+    "observed_app_title": "제주 버스 데이터 길잡이",
+    "observed_records": 37057,
+    "observed_mode": "규칙 모드",
+    "terminal_nonfatal_messages": [
+      "dbus connection warnings",
+      "SSL handshake warnings"
+    ],
+    "server_and_window_left_running": true
+  },
+  "limitations": [
+    "Linux cloud only; not Windows or center PC validation",
+    "No AI inference or printing validation",
+    "Successful native screenshot observed in tool output but not saved to a file"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "dimension": "time",
+      "independent_sql_match": true
+    },
+    {
+      "dimension": "weekday",
+      "independent_sql_match": true
+    },
+    {
+      "dimension": "type",
+      "independent_sql_match": true
+    },
+    {
+      "dimension": "month",
+      "independent_sql_match": true
+    }
+  ],
+  "rows": 37057,
+  "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529"
+}

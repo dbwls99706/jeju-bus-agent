@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "scope": "새 Python 가상환경의 공식 의존성 설치 + 다운로드 스크립트의 캐시 활용 + 실제 로컬 AI 계획/분석",
+  "platform": {
+    "os": "Linux x86_64",
+    "python": "3.12.14"
+  },
+  "fresh_python_environment": true,
+  "packages": {
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.2",
+    "huggingface_hub": "2.4.0",
+    "socksio": "1.0.0"
+  },
+  "model": {
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "device": "CPU",
+    "dtype": "bfloat16",
+    "safetensors_sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+    "weights_source": "기존 정확 리비전 캐시를 다운로드 스크립트로 새 models/qwen15 폴더에 준비. cold 다운로드 미검증."
+  },
+  "commands": [
+    "python -m venv .venv",
+    "python -m pip install torch==2.15.0+cpu --index-url https://download.pytorch.org/whl/cpu",
+    "python -m pip install -r requirements-ai.txt",
+    "python scripts/download_model.py (기존 HF 캐시 사용)",
+    "prepare_analysis(question) → analyze(question, expected_plan=plan)"
+  ],
+  "question": "일주일 중 어느 날의 기록이 높아?",
+  "plan_dimension": "weekday",
+  "plan_mode": "local_ai",
+  "result_mode": "local_ai",
+  "result_stats": {
+    "rows": 4704,
+    "total": 8998444,
+    "days": 672,
+    "missing_combinations": 0,
+    "observed_cells": 4704,
+    "expected_cells": 4704,
+    "coverage": 1.0
+  },
+  "quality_comparable": true,
+  "timing_seconds": {
+    "dependencies_install_approx": 67.8,
+    "plan_including_first_model_load": 7.708,
+    "confirmed_analysis": 0.813,
+    "whole_smoke": 8.53
+  },
+  "timing_note": "의존성 설치 시간은 가상환경 생성 파일과 설치 완료 로그 수정시각 차이로 산출한 근사치. 추론 시간은 perf_counter 실측.",
+  "tested_files_sha256": {
+    "agent.py": "77e9c38e603300130290c821edee7c3e5612923fc5a96feabbd322dd92478efb",
+    "query.py": "cc41379db4a46e05db82c428d7eaa5be15b82eadc218e9489531c516dbb54d52",
+    "planner.py": "fb169f55c3256eb5eea6210749e831a78d74292cb15171ba0ceba7dfcc228bc5",
+    "requirements-ai.txt": "e0e540fe0a4ee0b57918aaa5c8caf62926097e2f4dee1e4f042b7f994860884d",
+    "scripts/download_model.py": "0114d5cc47cffe842d8297345d24d0e8331977f398c5a8c1e389b3761ae45249"
+  },
+  "limitations": [
+    "Linux 클라우드 검증이며 Windows 또는 센터 PC 검증이 아님",
+    "공식 고정 리비전의 기존 모델 캐시를 재사용했으므로 최초 전체 가중치 다운로드 성공을 증명하지 않음",
+    "이 시험은 Python API 수준의 실제 AI 계획·분석이며 브라우저 AI모드 전체 UI 검증은 아님",
+    "API키·유료 API·외부 추론 서비스 사용 없음"
+  ]
+}

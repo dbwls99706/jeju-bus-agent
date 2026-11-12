@@ -1,0 +1,18 @@
+{
+  "scope": "Linux actual launch subprocess, non-project working directory, explicit ephemeral local port, browser handoff disabled for automation",
+  "source_rows": 37057,
+  "source_hash": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+  "planner_mode": "rules",
+  "loopback_only": true,
+  "success": true,
+  "limits": [
+    "Not Windows validation",
+    "Browser handoff separately unit-tested and real browser app previously tested"
+  ],
+  "occupied_default_port_test": {
+    "success": true,
+    "selected_port": 8766,
+    "existing_server_reused": false,
+    "test_owned_blocker": true
+  }
+}

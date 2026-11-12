@@ -1,0 +1,349 @@
+[
+  {
+    "title": "요일별 승차 기록",
+    "answer": "2023-12-25~2025-10-26, 4,704개 기록을 분석했습니다. 관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수으로 비교하며 미기록을 0으로 채우지 않았습니다.",
+    "mode": "local_ai",
+    "plan": {
+      "dimension": "weekday",
+      "start_date": "2023-12-25",
+      "end_date": "2025-10-26",
+      "user_types": [
+        "일반"
+      ],
+      "formula": "관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수"
+    },
+    "chart": {
+      "labels": [
+        "월",
+        "화",
+        "수",
+        "목",
+        "금",
+        "토",
+        "일"
+      ],
+      "values": [
+        13575.479,
+        13621.75,
+        13854.688,
+        13522.51,
+        13192.49,
+        13281.802,
+        12685.073
+      ],
+      "unit": "기록값 환산 명/일"
+    },
+    "table": [
+      {
+        "label": "월",
+        "total": 1303246,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13575.479,
+        "days": 96
+      },
+      {
+        "label": "화",
+        "total": 1307688,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13621.75,
+        "days": 96
+      },
+      {
+        "label": "수",
+        "total": 1330050,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13854.688,
+        "days": 96
+      },
+      {
+        "label": "목",
+        "total": 1298161,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13522.51,
+        "days": 96
+      },
+      {
+        "label": "금",
+        "total": 1266479,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13192.49,
+        "days": 96
+      },
+      {
+        "label": "토",
+        "total": 1275053,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13281.802,
+        "days": 96
+      },
+      {
+        "label": "일",
+        "total": 1217767,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 12685.073,
+        "days": 96
+      }
+    ],
+    "warnings": [
+      "승차 집계는 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.",
+      "이 자료에는 정류장·노선·지역 열이 없어 장소별 안내나 자료의 공간적 범위를 확정할 수 없습니다.",
+      "미기록 조합은 0으로 대체하지 않습니다. 관측률이 다른 그룹의 비교는 누락 영향을 받습니다.",
+      "기간과 유형은 화면 필터 기준입니다. 질문에 적은 날짜가 자동 적용되지는 않습니다.",
+      "2025-10-26까지의 과거 자료이며 현재 실시간 수요·시간표가 아닙니다."
+    ],
+    "steps": [
+      {
+        "tool": "validate_csv",
+        "detail": "스키마·날짜요일·중복셀·음수 검사 및 파일 해시 기록"
+      },
+      {
+        "tool": "plan_query",
+        "detail": "local_ai: weekday 도구 선택"
+      },
+      {
+        "tool": "filter_rows",
+        "detail": "날짜 672일, 유형 1개"
+      },
+      {
+        "tool": "aggregate_counts",
+        "detail": "관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수"
+      },
+      {
+        "tool": "audit_missing",
+        "detail": "0/4,704 조합 미기록"
+      }
+    ],
+    "sources": [
+      {
+        "name": "일별시간대별버스승차인원수현황.csv",
+        "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+        "provenance": "사용자가 제공한 대회 관련 원본; 이용조건 별도 확인 필요",
+        "rows_used": 4704,
+        "row_number_samples": [
+          4,
+          11,
+          19,
+          27,
+          34,
+          41,
+          48,
+          55,
+          63,
+          71
+        ]
+      }
+    ],
+    "stats": {
+      "rows": 4704,
+      "total": 8998444,
+      "days": 672,
+      "missing_combinations": 0,
+      "observed_cells": 4704,
+      "expected_cells": 4704,
+      "coverage": 1.0
+    },
+    "elapsed_seconds": 4.997
+  },
+  {
+    "title": "시간대별 승차 기록",
+    "answer": "2023-12-25~2025-10-26, 4,704개 기록을 분석했습니다. 관측된 승차 합계 ÷ 선택 날짜 수 ÷ 구간 시간으로 비교하며 미기록을 0으로 채우지 않았습니다.",
+    "mode": "rules_guarded",
+    "plan": {
+      "dimension": "time",
+      "start_date": "2023-12-25",
+      "end_date": "2025-10-26",
+      "user_types": [
+        "일반"
+      ],
+      "formula": "관측된 승차 합계 ÷ 선택 날짜 수 ÷ 구간 시간"
+    },
+    "chart": {
+      "labels": [
+        "01시-06시",
+        "07시-09시",
+        "10시-12시",
+        "13시-15시",
+        "16시-18시",
+        "19시-21시",
+        "22시-24시"
+      ],
+      "values": [
+        91.861,
+        803.35,
+        870.139,
+        863.106,
+        914.11,
+        700.88,
+        128.207
+      ],
+      "unit": "기록값 환산 명/일/시간"
+    },
+    "table": [
+      {
+        "label": "01시-06시",
+        "total": 370382,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 6,
+        "per_hour": 91.861,
+        "value": 91.861,
+        "days": 672
+      },
+      {
+        "label": "07시-09시",
+        "total": 1619554,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 803.35,
+        "value": 803.35,
+        "days": 672
+      },
+      {
+        "label": "10시-12시",
+        "total": 1754200,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 870.139,
+        "value": 870.139,
+        "days": 672
+      },
+      {
+        "label": "13시-15시",
+        "total": 1740022,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 863.106,
+        "value": 863.106,
+        "days": 672
+      },
+      {
+        "label": "16시-18시",
+        "total": 1842846,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 914.11,
+        "value": 914.11,
+        "days": 672
+      },
+      {
+        "label": "19시-21시",
+        "total": 1412974,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 700.88,
+        "value": 700.88,
+        "days": 672
+      },
+      {
+        "label": "22시-24시",
+        "total": 258466,
+        "observed_cells": 672,
+        "expected_cells": 672,
+        "coverage": 1.0,
+        "hours": 3,
+        "per_hour": 128.207,
+        "value": 128.207,
+        "days": 672
+      }
+    ],
+    "warnings": [
+      "승차 집계는 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.",
+      "이 자료에는 정류장·노선·지역 열이 없어 장소별 안내나 자료의 공간적 범위를 확정할 수 없습니다.",
+      "미기록 조합은 0으로 대체하지 않습니다. 관측률이 다른 그룹의 비교는 누락 영향을 받습니다.",
+      "기간과 유형은 화면 필터 기준입니다. 질문에 적은 날짜가 자동 적용되지는 않습니다.",
+      "2025-10-26까지의 과거 자료이며 현재 실시간 수요·시간표가 아닙니다.",
+      "AI 계획과 명시적 질문 항목이 달라 규칙으로 교정했습니다."
+    ],
+    "steps": [
+      {
+        "tool": "validate_csv",
+        "detail": "스키마·날짜요일·중복셀·음수 검사 및 파일 해시 기록"
+      },
+      {
+        "tool": "plan_query",
+        "detail": "rules_guarded: time 도구 선택"
+      },
+      {
+        "tool": "filter_rows",
+        "detail": "날짜 672일, 유형 1개"
+      },
+      {
+        "tool": "aggregate_counts",
+        "detail": "관측된 승차 합계 ÷ 선택 날짜 수 ÷ 구간 시간"
+      },
+      {
+        "tool": "audit_missing",
+        "detail": "0/4,704 조합 미기록"
+      }
+    ],
+    "sources": [
+      {
+        "name": "일별시간대별버스승차인원수현황.csv",
+        "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+        "provenance": "사용자가 제공한 대회 관련 원본; 이용조건 별도 확인 필요",
+        "rows_used": 4704,
+        "row_number_samples": [
+          4,
+          11,
+          19,
+          27,
+          34,
+          41,
+          48,
+          55,
+          63,
+          71
+        ]
+      }
+    ],
+    "stats": {
+      "rows": 4704,
+      "total": 8998444,
+      "days": 672,
+      "missing_combinations": 0,
+      "observed_cells": 4704,
+      "expected_cells": 4704,
+      "coverage": 1.0
+    },
+    "elapsed_seconds": 1.197
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-12",
+  "environment": "Actual cloud Chromium via CUA, desktop Python3 rules-mode server restarted",
+  "checks": {
+    "initial_claim_choices_empty_and_required": true,
+    "standardization_disabled_before_computation": true,
+    "total_increase": "not_supported",
+    "raw_daily_mean_increase": "withheld",
+    "standardized_increase": "supported",
+    "raw_table_preserved_before_and_after_standardization": true,
+    "standardization_values": [
+      13899.414,
+      14274.964
+    ],
+    "difference": 375.55,
+    "percent_change": 2.702,
+    "unobserved_other": "standardization not eligible, raw values unobserved",
+    "csv_and_json_actual_download": "PASS; CSV2rows standardization_json and claim_verification_json equal JSON fields"
+  },
+  "artifacts": [
+    "browser-standardization-claim.png",
+    "browser-standardization-claim.json",
+    "browser-standardization-claim.csv"
+  ],
+  "limits": [
+    "Windows and center PC not tested",
+    "Model inference not tested",
+    "Print not tested"
+  ],
+  "code_changes": false,
+  "wording_recheck": {
+    "server_restarted": true,
+    "raw_vs_standardized_answer_and_insights_separated": true,
+    "redundant_standardization_review_prompt_removed": true,
+    "raw_daily_mean_verdict": "indeterminate",
+    "arithmetic_sentence": "13922.258→14291.103 increase, equal-condition judgment withheld",
+    "artifact": "browser-arithmetic-claim.json"
+  }
+}

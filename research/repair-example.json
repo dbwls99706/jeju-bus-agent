@@ -1,0 +1,233 @@
+{
+  "title": "두 기간의 승차 기록 비교",
+  "answer": "기간 A 2024-01-01~2024-01-31(31일), 기간 B 2024-02-01~2024-02-29(29일), 유형 일반. 두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다.",
+  "mode": "rules",
+  "plan": {
+    "metric": "daily_mean",
+    "weekday_grouping": null,
+    "kind": "period_compare",
+    "dimension": "period_compare",
+    "start_date": "2024-01-01",
+    "end_date": "2024-02-29",
+    "user_types": [
+      "일반"
+    ],
+    "periods": [
+      {
+        "label": "기간 A",
+        "start_date": "2024-01-01",
+        "end_date": "2024-01-31"
+      },
+      {
+        "label": "기간 B",
+        "start_date": "2024-02-01",
+        "end_date": "2024-02-29"
+      }
+    ],
+    "notes": [
+      "질문에 명시한 달의 전체 달력기간을 적용합니다.",
+      "두 기간의 일평균을 계산하고 관측률과 요일 구성비가 같을 때만 차이를 해석합니다.",
+      "표시 지표: 포함일수로 나눈 기록 일평균"
+    ],
+    "question": "2024년1월과2월 비교",
+    "mode": "rules",
+    "formula": "각 기간의 관측 승차 합계 ÷ 각 기간의 달력일수; 완전 관측·요일 비율 일치 시에만 B-A와 (B-A)/A×100 계산"
+  },
+  "chart": {
+    "labels": [
+      "기간 A",
+      "기간 B"
+    ],
+    "values": [
+      13922.258,
+      14291.103
+    ],
+    "unit": "기록값 환산 명/일"
+  },
+  "table": [
+    {
+      "label": "기간 A",
+      "start_date": "2024-01-01",
+      "end_date": "2024-01-31",
+      "total": 431590,
+      "observed_cells": 217,
+      "expected_cells": 217,
+      "coverage": 1.0,
+      "missing_combinations": 0,
+      "days": 31,
+      "hours": null,
+      "per_hour": null,
+      "value": 13922.258,
+      "weekday_counts": {
+        "월": 5,
+        "화": 5,
+        "수": 5,
+        "목": 4,
+        "금": 4,
+        "토": 4,
+        "일": 4
+      },
+      "weekday_proportions": {
+        "월": 0.16129,
+        "화": 0.16129,
+        "수": 0.16129,
+        "목": 0.129032,
+        "금": 0.129032,
+        "토": 0.129032,
+        "일": 0.129032
+      },
+      "observation_status": "완전 관측"
+    },
+    {
+      "label": "기간 B",
+      "start_date": "2024-02-01",
+      "end_date": "2024-02-29",
+      "total": 414442,
+      "observed_cells": 203,
+      "expected_cells": 203,
+      "coverage": 1.0,
+      "missing_combinations": 0,
+      "days": 29,
+      "hours": null,
+      "per_hour": null,
+      "value": 14291.103,
+      "weekday_counts": {
+        "월": 4,
+        "화": 4,
+        "수": 4,
+        "목": 5,
+        "금": 4,
+        "토": 4,
+        "일": 4
+      },
+      "weekday_proportions": {
+        "월": 0.137931,
+        "화": 0.137931,
+        "수": 0.137931,
+        "목": 0.172414,
+        "금": 0.137931,
+        "토": 0.137931,
+        "일": 0.137931
+      },
+      "observation_status": "완전 관측"
+    }
+  ],
+  "comparison": {
+    "direction": "기간 B - 기간 A",
+    "difference": null,
+    "percent_change": null,
+    "unit": "기록 명/일",
+    "eligible": false,
+    "complete_observation": true,
+    "same_weekday_proportions": false,
+    "reason": "두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다.",
+    "percent_note": null
+  },
+  "repair_proposal": {
+    "periods": [
+      {
+        "label": "기간 A",
+        "start": "2024-01-01",
+        "end": "2024-01-07"
+      },
+      {
+        "label": "기간 B",
+        "start": "2024-02-05",
+        "end": "2024-02-11"
+      }
+    ],
+    "user_types": [
+      "일반"
+    ],
+    "reason": "각 원기간 안에서 선택 유형의 기록이 모두 있는 첫 월~일 7일 후보를 찾았습니다. 원래 기간 전체와는 다른 축소 범위이므로 확인 후에만 적용합니다. 계절·공휴일·행사는 통제하지 않습니다.",
+    "requires_confirmation": true
+  },
+  "quality": {
+    "comparable": false,
+    "reason": "두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다.",
+    "checks": [
+      "기간 범위·비중첩 확인",
+      "각 기간의 7시간구간×유형×날짜 관측률 대조",
+      "요일 구성 비율을 정확한 정수 교차곱으로 대조",
+      "기간별 합계 보존 확인",
+      "미기록 0 대체 없음"
+    ]
+  },
+  "insights": [
+    "두 기간의 기록을 그대로 보여주되 차이·증감률·순위 결론은 생성하지 않았습니다.",
+    "두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다.",
+    "다음 단계: 같은 요일 구성의 겹치지 않는 7일 배수 기간을 선택하거나, 별도의 요일 표준화 방법을 검토하세요. 자동으로 기간을 바꾸지 않았습니다.",
+    "대안 계획: 각 원기간 내의 완전관측 월~일 7일을 제안합니다. 원결과와 원기간은 변경하지 않았고, 대안 비교도 아직 계산하지 않았습니다. 적용 전 확인이 필요합니다."
+  ],
+  "warnings": [
+    "질문에 명시한 달의 전체 달력기간을 적용합니다.",
+    "두 기간의 일평균을 계산하고 관측률과 요일 구성비가 같을 때만 차이를 해석합니다.",
+    "표시 지표: 포함일수로 나눈 기록 일평균",
+    "두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다.",
+    "승차 기록은 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.",
+    "요일 구성 일치는 기초 비교 조건일 뿐, 계절·공휴일·행사·서비스 변경을 통제하지 않습니다. 원인이나 통계적 유의성을 주장하지 않습니다.",
+    "미기록은 0으로 대체하지 않았습니다. 부분 관측 기간의 표시값은 기록 합계의 환산값이며 실제 일평균 추정치가 아닙니다.",
+    "자료에 정류장·노선·지역 열이 없어 공간적 범위나 노선별 상황을 확정하지 않습니다."
+  ],
+  "steps": [
+    {
+      "tool": "validate_periods",
+      "detail": "원본 범위 내 비중첩 두 기간과 유형 확인"
+    },
+    {
+      "tool": "aggregate_periods",
+      "detail": "각 기간의 합계·달력일수·관측 조합 계산"
+    },
+    {
+      "tool": "audit_missing",
+      "detail": "0/420 조합 미기록"
+    },
+    {
+      "tool": "compare_weekday_mix",
+      "detail": "요일 비율 불일치"
+    },
+    {
+      "tool": "gate_comparison",
+      "detail": "두 기간의 요일 구성 비율이 달라 같은 조건의 단순 증감 비교를 보류합니다."
+    },
+    {
+      "tool": "verify_aggregate",
+      "detail": "기간별 합계와 선택 원본 합계 846,032 일치"
+    },
+    {
+      "tool": "report_evidence",
+      "detail": "조건 충족 시에만 차이·증감률 산출, 불충족 사유와 후속 질문 제공"
+    }
+  ],
+  "sources": [
+    {
+      "name": "일별시간대별버스승차인원수현황.csv",
+      "source_url": "https://www.jejudatahub.net/data/view/data/512",
+      "metadata_url": "https://data.edmgr.kr/dataView.do?id=jejudatahub-net-512",
+      "provenance": "교육부·KERIS 공식2차 메타상 cc-zero. 원본 현행약관·버전 바이트 동일성 미대조.",
+      "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+      "rows_used": 420,
+      "row_number_samples": [
+        369,
+        376,
+        383,
+        390,
+        397,
+        404,
+        410,
+        417,
+        425,
+        433
+      ]
+    }
+  ],
+  "stats": {
+    "rows": 420,
+    "total": 846032,
+    "days": 60,
+    "missing_combinations": 0,
+    "observed_cells": 420,
+    "expected_cells": 420,
+    "coverage": 1.0
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "Backend supported goal-metric requests on real source, not browser UX",
+  "cases": [
+    {
+      "question": "전체 이용자 시간대별 합계",
+      "goal": "time",
+      "metric": "total",
+      "rows_used": 1619,
+      "table_rows": 7,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 시간대별 일평균",
+      "goal": "time",
+      "metric": "daily_mean",
+      "rows_used": 1619,
+      "table_rows": 7,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 시간대별 시간당 평균",
+      "goal": "time",
+      "metric": "hourly_daily_mean",
+      "rows_used": 1619,
+      "table_rows": 7,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 요일별 합계",
+      "goal": "weekday",
+      "metric": "total",
+      "rows_used": 1619,
+      "table_rows": 7,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 요일별 일평균",
+      "goal": "weekday",
+      "metric": "daily_mean",
+      "rows_used": 1619,
+      "table_rows": 7,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 월별 합계",
+      "goal": "month",
+      "metric": "total",
+      "rows_used": 1619,
+      "table_rows": 1,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 월별 일평균",
+      "goal": "month",
+      "metric": "daily_mean",
+      "rows_used": 1619,
+      "table_rows": 1,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 유형별 합계",
+      "goal": "user_type",
+      "metric": "total",
+      "rows_used": 1619,
+      "table_rows": 9,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자 유형별 일평균",
+      "goal": "user_type",
+      "metric": "daily_mean",
+      "rows_used": 1619,
+      "table_rows": 9,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자  합계",
+      "goal": "summary",
+      "metric": "total",
+      "rows_used": 1619,
+      "table_rows": 1,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    },
+    {
+      "question": "전체 이용자  일평균",
+      "goal": "summary",
+      "metric": "daily_mean",
+      "rows_used": 1619,
+      "table_rows": 1,
+      "observed_total": 981266,
+      "plan_confirmation_pass": true
+    }
+  ]
+}

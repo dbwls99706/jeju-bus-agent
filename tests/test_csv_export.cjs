@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+const root=path.resolve(__dirname,'..'),script=fs.readFileSync(path.join(root,'static/app.js'),'utf8');
+const context={};vm.createContext(context);vm.runInContext(script.slice(script.indexOf('function csvCell'),script.indexOf("$('csv-download')")),context);
+const result=JSON.parse(fs.readFileSync(path.join(root,'research/example.json'),'utf8'));
+const csv=context.buildAggregateCsv(result);
+for(const header of ['analysis_start_date','analysis_end_date','user_types','value_unit','calculation_formula','source_url','source_sha256','coverage','interpretation_warnings'])assert(csv.includes(header));
+assert(csv.startsWith('\ufeff'));assert(csv.includes(result.sources[0].sha256));assert(csv.includes(result.chart.unit));
+result.plan.user_types=['=CMD()'];result.table[0]={label:'\t@cmd',total:null,observed_cells:0,expected_cells:672,coverage:0,days:672,hours:6,value:null};
+const safe=context.buildAggregateCsv(result);assert(safe.includes("'=CMD()"));assert(safe.includes("'\t@cmd"));assert(safe.includes('미관측'));assert(!safe.includes('undefined'));
+console.log('PASS: self-contained CSV metadata, BOM, source hash, units, unobserved state and formula-injection protection');

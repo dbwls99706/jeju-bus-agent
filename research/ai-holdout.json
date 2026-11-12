@@ -1,0 +1,79 @@
+{
+  "description": "프롬프트와 규칙 수정 후 새로 정한8문항 첫실행. 이후 이 결과로 규칙을 수정하지 않음. 소규모 내부검증이며 외부평가아님.",
+  "model": "Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "results": [
+    {
+      "question": "시간 구간마다 평균을 보고 싶습니다",
+      "expected": "time",
+      "actual": "time",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 6.324,
+      "warning": null
+    },
+    {
+      "question": "요일을 월요일부터 순서대로 보여 주세요",
+      "expected": "weekday",
+      "actual": "weekday",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 0.855,
+      "warning": null
+    },
+    {
+      "question": "한 달씩 묶어서 변화 그래프를 그려 주세요",
+      "expected": "month",
+      "actual": "month",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 0.802,
+      "warning": null
+    },
+    {
+      "question": "청소년과 어린이의 기록량을 비교해 주세요",
+      "expected": "user_type",
+      "actual": "user_type",
+      "mode": "rules_guarded",
+      "exact": true,
+      "seconds": 0.862,
+      "warning": "AI 계획과 명시적 질문 항목이 달라 규칙으로 교정했습니다."
+    },
+    {
+      "question": "출퇴근 무렵의 이용 기록을 읽고 싶어요",
+      "expected": "time",
+      "actual": "time",
+      "mode": "rules_guarded",
+      "exact": true,
+      "seconds": 0.762,
+      "warning": "AI 계획과 명시적 질문 항목이 달라 규칙으로 교정했습니다."
+    },
+    {
+      "question": "월 단위로 묶은 평균이 궁금합니다",
+      "expected": "month",
+      "actual": "month",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 0.951,
+      "warning": null
+    },
+    {
+      "question": "이 자료에서 이용자 구분 간 차이를 보고 싶어요",
+      "expected": "user_type",
+      "actual": "user_type",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 0.892,
+      "warning": null
+    },
+    {
+      "question": "무슨 요일에 관측된 값이 더 큽니까",
+      "expected": "weekday",
+      "actual": "weekday",
+      "mode": "local_ai",
+      "exact": true,
+      "seconds": 0.745,
+      "warning": null
+    }
+  ]
+}

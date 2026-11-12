@@ -1,0 +1,13 @@
+{
+  "python": "3.12.14",
+  "environment": "Linux clean venv, pip only",
+  "package_extracted_to_new_directory": true,
+  "unit_http_tests": 205,
+  "unit_http_pass": true,
+  "sqlite_four_dimensions_pass": true,
+  "csv_export_pass": true,
+  "doctor_source_rows": 37057,
+  "doctor_source_hash_valid": true,
+  "ai_in_clean_rules_environment": false,
+  "note": "Latest launcher/disclosure/screenshots candidate extracted and tested in clean Python3.12.14 rules environment. Download-path test mocked; actual model cold download not performed. Separate Linux GUI launcher auto-open success after explicit loopback proxy bypass. Windows/center/print unverified."
+}

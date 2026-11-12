@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-12",
+  "environment": "Cloud Chromium + CUA desktop Python3 server, rules mode",
+  "tests": [
+    {
+      "name": "guided_time",
+      "result": "PASS",
+      "details": "2024-01 경로217records,7bins, hourly_daily_mean"
+    },
+    {
+      "name": "guided_summary",
+      "result": "PASS",
+      "details": "2024-01 일반 total431590,daily_mean13922.258"
+    },
+    {
+      "name": "guided_weekday",
+      "result": "PASS",
+      "details": "7weekday rows,total metric retained"
+    },
+    {
+      "name": "guided_month",
+      "result": "PASS",
+      "details": "2024-01~03 일반 monthly totals431590,414442,430890"
+    },
+    {
+      "name": "guided_types",
+      "result": "PASS",
+      "details": "Single type hint shown; selecting 전체 generated9types,기타 unobserved"
+    },
+    {
+      "name": "metric_scope",
+      "result": "PASS",
+      "details": "hourly metric disabled outside time goal"
+    },
+    {
+      "name": "error_recovery",
+      "result": "PASS",
+      "details": "지난주 refused; recovery button then guided weekday plan and execution succeeded"
+    },
+    {
+      "name": "repair_confirmation",
+      "result": "PASS",
+      "details": "Jan/Feb originals431590/414442 retained while candidate plan pending; after confirmation candidate totals82410/105932,difference3360.286/day,28.543%"
+    },
+    {
+      "name": "plan_focus_scroll_fix",
+      "result": "PASS",
+      "details": "After latest static reload, guided plan card receives accessibility focus and viewport screenshot shows plan and confirmation button. Same showPlan function used by repair."
+    }
+  ],
+  "screenshot": "browser-guided-plan.png",
+  "limits": [
+    "Not Windows or center-PC validation",
+    "Not AI inference test",
+    "Print not tested"
+  ],
+  "changes": "No code changes"
+}

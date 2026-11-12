@@ -1,0 +1,158 @@
+{
+  "independent_sql_match": true,
+  "expected": {
+    "주말": [
+      2492820,
+      1344,
+      192
+    ],
+    "평일": [
+      6505624,
+      3360,
+      480
+    ]
+  },
+  "result": {
+    "title": "요일별 승차 기록",
+    "answer": "2023-12-25~2025-10-26, 유형 일반, 4,704개 기록을 분석했습니다. 관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수으로 비교하며 미기록을 0으로 채우지 않았습니다.",
+    "quality": {
+      "comparable": true,
+      "reason": "선택한 각 그룹의 기대 조합이 모두 기록되어 있습니다.",
+      "checks": [
+        "그룹 합계와 선택 원본 합계 일치",
+        "날짜·구간길이 분모 확인",
+        "관측 조합과 기대 조합 대조",
+        "임의 0 대체 없음"
+      ]
+    },
+    "insights": [
+      "완전 관측된 선택 범위에서 환산값이 가장 높은 그룹: 평일 (13,553.383). 단위와 선택 기간을 함께 읽으세요."
+    ],
+    "mode": "rules",
+    "plan": {
+      "weekday_grouping": "weekday_vs_weekend",
+      "kind": "single",
+      "dimension": "weekday",
+      "start_date": "2023-12-25",
+      "end_date": "2025-10-26",
+      "user_types": [
+        "일반"
+      ],
+      "periods": [],
+      "notes": [
+        "평일은 월~금, 주말은 토~일로 묶어 해당 날짜수로 나눈 일평균을 비교합니다."
+      ],
+      "question": "평일과 주말 비교",
+      "mode": "rules",
+      "formula": "관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수"
+    },
+    "chart": {
+      "labels": [
+        "평일",
+        "주말"
+      ],
+      "values": [
+        13553.383,
+        12983.438
+      ],
+      "unit": "기록값 환산 명/일"
+    },
+    "table": [
+      {
+        "label": "평일",
+        "total": 6505624,
+        "observed_cells": 3360,
+        "expected_cells": 3360,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 13553.383,
+        "days": 480
+      },
+      {
+        "label": "주말",
+        "total": 2492820,
+        "observed_cells": 1344,
+        "expected_cells": 1344,
+        "coverage": 1.0,
+        "hours": null,
+        "per_hour": null,
+        "value": 12983.438,
+        "days": 192
+      }
+    ],
+    "warnings": [
+      "승차 집계는 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.",
+      "이 자료에는 정류장·노선·지역 열이 없어 장소별 안내나 자료의 공간적 범위를 확정할 수 없습니다.",
+      "미기록 조합은 0으로 대체하지 않습니다. 관측률이 다른 그룹의 비교는 누락 영향을 받습니다.",
+      "분석 기간과 유형은 확인한 계획에 명시됩니다. 질문에 명시한 날짜·유형은 화면 필터보다 우선합니다.",
+      "2025-10-26까지의 과거 자료이며 현재 실시간 수요·시간표가 아닙니다.",
+      "평일은 월~금, 주말은 토~일로 묶어 해당 날짜수로 나눈 일평균을 비교합니다."
+    ],
+    "steps": [
+      {
+        "tool": "validate_csv",
+        "detail": "스키마·날짜요일·중복셀·음수 검사 및 파일 해시 기록"
+      },
+      {
+        "tool": "plan_query",
+        "detail": "rules: weekday 도구 선택"
+      },
+      {
+        "tool": "filter_rows",
+        "detail": "날짜 672일, 유형 1개"
+      },
+      {
+        "tool": "aggregate_counts",
+        "detail": "관측된 승차 합계 ÷ 해당 그룹의 선택 날짜 수"
+      },
+      {
+        "tool": "audit_missing",
+        "detail": "0/4,704 조합 미기록"
+      },
+      {
+        "tool": "verify_aggregate",
+        "detail": "독립 합계 보존 확인: 8998444"
+      },
+      {
+        "tool": "assess_comparability",
+        "detail": "선택한 각 그룹의 기대 조합이 모두 기록되어 있습니다."
+      },
+      {
+        "tool": "summarize_evidence",
+        "detail": "검증 결과에 따라 근거 요약 또는 순위 해석 보류"
+      }
+    ],
+    "sources": [
+      {
+        "name": "일별시간대별버스승차인원수현황.csv",
+        "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+        "source_url": "https://www.jejudatahub.net/data/view/data/512",
+        "metadata_url": "https://data.edmgr.kr/dataView.do?id=jejudatahub-net-512",
+        "provenance": "사용자 제공 원본. 교육부·KERIS 공식 메타상 제주빅데이터센터 제공·cc-zero. 원본 현행약관 및 버전 바이트 동일성은 미대조.",
+        "rows_used": 4704,
+        "row_number_samples": [
+          4,
+          11,
+          19,
+          27,
+          34,
+          41,
+          48,
+          55,
+          63,
+          71
+        ]
+      }
+    ],
+    "stats": {
+      "rows": 4704,
+      "total": 8998444,
+      "days": 672,
+      "missing_combinations": 0,
+      "observed_cells": 4704,
+      "expected_cells": 4704,
+      "coverage": 1.0
+    }
+  }
+}

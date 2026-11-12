@@ -1,0 +1,228 @@
+test_ai_error (test_agent.Tests.test_ai_error) ... ok
+test_ai_route (test_agent.Tests.test_ai_route) ... ok
+test_bad_hash (test_agent.Tests.test_bad_hash) ... ok
+test_catalog (test_agent.Tests.test_catalog) ... ok
+test_combined_population_daily_average (test_agent.Tests.test_combined_population_daily_average) ... ok
+test_combined_scope_refused (test_agent.Tests.test_combined_scope_refused) ... ok
+test_comparability_gate (test_agent.Tests.test_comparability_gate) ... ok
+test_daily_mean_not_hourly (test_agent.Tests.test_daily_mean_not_hourly) ... ok
+test_daily_overview_mean (test_agent.Tests.test_daily_overview_mean) ... ok
+test_date_filter (test_agent.Tests.test_date_filter) ... ok
+test_date_text_refused (test_agent.Tests.test_date_text_refused) ... ok
+test_duplicate (test_agent.Tests.test_duplicate) ... ok
+test_empty (test_agent.Tests.test_empty) ... ok
+test_explicit_sum_bucket (test_agent.Tests.test_explicit_sum_bucket) ... ok
+test_general_complete (test_agent.Tests.test_general_complete) ... ok
+test_guard (test_agent.Tests.test_guard) ... ok
+test_invalid_dates (test_agent.Tests.test_invalid_dates) ... ok
+test_invalid_type (test_agent.Tests.test_invalid_type) ... ok
+test_lowest_insight (test_agent.Tests.test_lowest_insight) ... ok
+test_missing (test_agent.Tests.test_missing) ... ok
+test_multi_type_month_refused (test_agent.Tests.test_multi_type_month_refused) ... ok
+test_normalization (test_agent.Tests.test_normalization) ... ok
+test_observed_zero_summary_still_zero (test_agent.Tests.test_observed_zero_summary_still_zero) ... ok
+test_partial_month (test_agent.Tests.test_partial_month) ... ok
+test_range_outside (test_agent.Tests.test_range_outside) ... ok
+test_repeat (test_agent.Tests.test_repeat) ... ok
+test_total (test_agent.Tests.test_total) ... ok
+test_total_metric_not_normalized (test_agent.Tests.test_total_metric_not_normalized) ... ok
+test_type_comparison (test_agent.Tests.test_type_comparison) ... ok
+test_unhandled_filter_refused (test_agent.Tests.test_unhandled_filter_refused) ... ok
+test_unobserved_group_null (test_agent.Tests.test_unobserved_group_null) ... ok
+test_unobserved_summary_is_null_not_zero (test_agent.Tests.test_unobserved_summary_is_null_not_zero) ... ok
+test_unsupported (test_agent.Tests.test_unsupported) ... ok
+test_weekday_missing_days_not_zero (test_agent.Tests.test_weekday_missing_days_not_zero) ... ok
+test_weekday_weekend_aggregation (test_agent.Tests.test_weekday_weekend_aggregation) ... ok
+test_actual_zeros_equal (test_claim_check.ClaimTests.test_actual_zeros_equal) ... ok
+test_contradicted (test_claim_check.ClaimTests.test_contradicted) ... ok
+test_decrease (test_claim_check.ClaimTests.test_decrease) ... ok
+test_display_rounding_not_equal (test_claim_check.ClaimTests.test_display_rounding_not_equal) ... ok
+test_equal_exact (test_claim_check.ClaimTests.test_equal_exact) ... ok
+test_exact_source_and_population_preserved (test_claim_check.ClaimTests.test_exact_source_and_population_preserved) ... ok
+test_json_safe (test_claim_check.ClaimTests.test_json_safe) ... ok
+test_missing_has_no_arithmetic_direction_claim (test_claim_check.ClaimTests.test_missing_has_no_arithmetic_direction_claim) ... ok
+test_missing_indeterminate (test_claim_check.ClaimTests.test_missing_indeterminate) ... ok
+test_no_auto_standardization (test_claim_check.ClaimTests.test_no_auto_standardization) ... ok
+test_raw_arithmetic_fact_separate_from_comparability (test_claim_check.ClaimTests.test_raw_arithmetic_fact_separate_from_comparability) ... ok
+test_schema_copy (test_claim_check.ClaimTests.test_schema_copy) ... ok
+test_schema_unknown_and_text_refused (test_claim_check.ClaimTests.test_schema_unknown_and_text_refused) ... ok
+test_single_result_refused (test_claim_check.ClaimTests.test_single_result_refused) ... ok
+test_source_not_mutated (test_claim_check.ClaimTests.test_source_not_mutated) ... ok
+test_standardized (test_claim_check.ClaimTests.test_standardized) ... ok
+test_standardized_changed_period (test_claim_check.ClaimTests.test_standardized_changed_period) ... ok
+test_standardized_changed_sum (test_claim_check.ClaimTests.test_standardized_changed_sum) ... ok
+test_standardized_missing_evidence (test_claim_check.ClaimTests.test_standardized_missing_evidence) ... ok
+test_supported (test_claim_check.ClaimTests.test_supported) ... ok
+test_tampered_raw_eligibility_guard (test_claim_check.ClaimTests.test_tampered_raw_eligibility_guard) ... ok
+test_total_diff_days_warning (test_claim_check.ClaimTests.test_total_diff_days_warning) ... ok
+test_unobserved_total_indeterminate (test_claim_check.ClaimTests.test_unobserved_total_indeterminate) ... ok
+test_weekday_mix_raw_refused (test_claim_check.ClaimTests.test_weekday_mix_raw_refused) ... ok
+test_zero_baseline (test_claim_check.ClaimTests.test_zero_baseline) ... ok
+test_browser_not_opened_on_mismatched_server (test_launch.LaunchTests.test_browser_not_opened_on_mismatched_server) ... 준비 상태를 확인하지 못해 브라우저를 열지 않았습니다. 위 주소와 서버 메시지를 확인하세요.
+ok
+test_browser_waits_for_matching_source (test_launch.LaunchTests.test_browser_waits_for_matching_source) ... ok
+test_default_port_conflict_moves_to_new_bound_port (test_launch.LaunchTests.test_default_port_conflict_moves_to_new_bound_port) ... ok
+test_download_destination_project_relative (test_launch.LaunchTests.test_download_destination_project_relative) ... ok
+test_explicit_port_conflict_never_opens_other_server (test_launch.LaunchTests.test_explicit_port_conflict_never_opens_other_server) ... ok
+test_invalid_port (test_launch.LaunchTests.test_invalid_port) ... ok
+test_loopback_readiness_ignores_environment_proxy (test_launch.LaunchTests.test_loopback_readiness_ignores_environment_proxy) ... ok
+test_missing_model_friendly_error (test_launch.LaunchTests.test_missing_model_friendly_error) ... ok
+test_relative_paths_resolved_before_chdir (test_launch.LaunchTests.test_relative_paths_resolved_before_chdir) ... ok
+test_actual_zero_distinct (test_period_compare.PeriodTests.test_actual_zero_distinct) ... ok
+test_bad_date (test_period_compare.PeriodTests.test_bad_date) ... ok
+test_both_periods_unobserved_stats_null (test_period_compare.PeriodTests.test_both_periods_unobserved_stats_null) ... ok
+test_both_zero (test_period_compare.PeriodTests.test_both_zero) ... ok
+test_conservation (test_period_compare.PeriodTests.test_conservation) ... ok
+test_different_duration_equal_mix (test_period_compare.PeriodTests.test_different_duration_equal_mix) ... ok
+test_duplicate_rejected (test_period_compare.PeriodTests.test_duplicate_rejected) ... ok
+test_empty_types (test_period_compare.PeriodTests.test_empty_types) ... ok
+test_entire_period_unobserved_null (test_period_compare.PeriodTests.test_entire_period_unobserved_null) ... ok
+test_equal_weekday_complete (test_period_compare.PeriodTests.test_equal_weekday_complete) ... ok
+test_json_serializable (test_period_compare.PeriodTests.test_json_serializable) ... ok
+test_missing_not_zero (test_period_compare.PeriodTests.test_missing_not_zero) ... ok
+test_multiple_types (test_period_compare.PeriodTests.test_multiple_types) ... ok
+test_negative_rejected (test_period_compare.PeriodTests.test_negative_rejected) ... ok
+test_no_repair_when_comparable (test_period_compare.PeriodTests.test_no_repair_when_comparable) ... ok
+test_overlap (test_period_compare.PeriodTests.test_overlap) ... ok
+test_range (test_period_compare.PeriodTests.test_range) ... ok
+test_repair_absent_when_no_complete_week (test_period_compare.PeriodTests.test_repair_absent_when_no_complete_week) ... ok
+test_repair_months_preserves_original (test_period_compare.PeriodTests.test_repair_months_preserves_original) ... ok
+test_repair_skips_missing_week (test_period_compare.PeriodTests.test_repair_skips_missing_week) ... ok
+test_reverse (test_period_compare.PeriodTests.test_reverse) ... ok
+test_source_not_mutated (test_period_compare.PeriodTests.test_source_not_mutated) ... ok
+test_unknown_type (test_period_compare.PeriodTests.test_unknown_type) ... ok
+test_weekday_counts (test_period_compare.PeriodTests.test_weekday_counts) ... ok
+test_weekday_mismatch_no_delta (test_period_compare.PeriodTests.test_weekday_mismatch_no_delta) ... ok
+test_after_not_single_day (test_query.QueryTests.test_after_not_single_day) ... ok
+test_age_not_fare_type (test_query.QueryTests.test_age_not_fare_type) ... ok
+test_all_and_specific_ambiguous (test_query.QueryTests.test_all_and_specific_ambiguous) ... ok
+test_all_boardings_not_general (test_query.QueryTests.test_all_boardings_not_general) ... ok
+test_all_cross_dimension_cue_pairs_rejected (test_query.QueryTests.test_all_cross_dimension_cue_pairs_rejected) ... ok
+test_all_users_not_default (test_query.QueryTests.test_all_users_not_default) ... ok
+test_ambiguous_demographic_not_defaulted (test_query.QueryTests.test_ambiguous_demographic_not_defaulted) ... ok
+test_ambiguous_relative (test_query.QueryTests.test_ambiguous_relative) ... ok
+test_both_extrema_explicit_refusal (test_query.QueryTests.test_both_extrema_explicit_refusal) ... ok
+test_closed_grammar_unknown_conditions_refused (test_query.QueryTests.test_closed_grammar_unknown_conditions_refused) ... ok
+test_compact_month_synonyms (test_query.QueryTests.test_compact_month_synonyms) ... ok
+test_cross_dimension_synonyms_fail_closed (test_query.QueryTests.test_cross_dimension_synonyms_fail_closed) ... ok
+test_daily_overview_all_time (test_query.QueryTests.test_daily_overview_all_time) ... ok
+test_daily_series_not_time_bins (test_query.QueryTests.test_daily_series_not_time_bins) ... ok
+test_dimension_cues_same_in_router_and_guard (test_query.QueryTests.test_dimension_cues_same_in_router_and_guard) ... ok
+test_exclusion_not_inclusion (test_query.QueryTests.test_exclusion_not_inclusion) ... ok
+test_explicit_daily_mean (test_query.QueryTests.test_explicit_daily_mean) ... ok
+test_explicit_group_not_collapsed_by_total (test_query.QueryTests.test_explicit_group_not_collapsed_by_total) ... ok
+test_explicit_sum_not_type_comparison (test_query.QueryTests.test_explicit_sum_not_type_comparison) ... ok
+test_explicit_totals_metric (test_query.QueryTests.test_explicit_totals_metric) ... ok
+test_four_date_period_night_not_eligible (test_query.QueryTests.test_four_date_period_night_not_eligible) ... ok
+test_four_dates (test_query.QueryTests.test_four_dates) ... ok
+test_four_list_dates_not_ranges (test_query.QueryTests.test_four_list_dates_not_ranges) ... ok
+test_generic_not_type (test_query.QueryTests.test_generic_not_type) ... ok
+test_grouped_population_sum_explicit_mean_preserved (test_query.QueryTests.test_grouped_population_sum_explicit_mean_preserved) ... ok
+test_grouped_sum_synonyms_use_total (test_query.QueryTests.test_grouped_sum_synonyms_use_total) ... ok
+test_guided_goal_metric_matrix (test_query.QueryTests.test_guided_goal_metric_matrix) ... ok
+test_half_year_not_full_year (test_query.QueryTests.test_half_year_not_full_year) ... ok
+test_hourly_daily_unit (test_query.QueryTests.test_hourly_daily_unit) ... ok
+test_hourly_request (test_query.QueryTests.test_hourly_request) ... ok
+test_invalid_date (test_query.QueryTests.test_invalid_date) ... ok
+test_iso_range (test_query.QueryTests.test_iso_range) ... ok
+test_korean_month (test_query.QueryTests.test_korean_month) ... ok
+test_longest_type (test_query.QueryTests.test_longest_type) ... ok
+test_lowest_intent_preserved (test_query.QueryTests.test_lowest_intent_preserved) ... ok
+test_mixed_metric_refused (test_query.QueryTests.test_mixed_metric_refused) ... ok
+test_month_range_not_two_month_comparison (test_query.QueryTests.test_month_range_not_two_month_comparison) ... ok
+test_multiple_types_within_type_dimension (test_query.QueryTests.test_multiple_types_within_type_dimension) ... ok
+test_only_type_particle (test_query.QueryTests.test_only_type_particle) ... ok
+test_open_from_not_single_day (test_query.QueryTests.test_open_from_not_single_day) ... ok
+test_open_month_and_year_refused (test_query.QueryTests.test_open_month_and_year_refused) ... ok
+test_outside_not_truncated (test_query.QueryTests.test_outside_not_truncated) ... ok
+test_overall_boardings_summary (test_query.QueryTests.test_overall_boardings_summary) ... ok
+test_overlapping (test_query.QueryTests.test_overlapping) ... ok
+test_period_all_population_preserved (test_query.QueryTests.test_period_all_population_preserved) ... ok
+test_period_daily_series_not_aggregate (test_query.QueryTests.test_period_daily_series_not_aggregate) ... ok
+test_period_extra_grouping_not_silently_dropped (test_query.QueryTests.test_period_extra_grouping_not_silently_dropped) ... ok
+test_period_hourly_metric_not_dropped (test_query.QueryTests.test_period_hourly_metric_not_dropped) ... ok
+test_period_population_sum_daily_mean_supported (test_query.QueryTests.test_period_population_sum_daily_mean_supported) ... ok
+test_period_sum_requires_explicit_daily_metric (test_query.QueryTests.test_period_sum_requires_explicit_daily_metric) ... ok
+test_period_supported_population_preserved (test_query.QueryTests.test_period_supported_population_preserved) ... ok
+test_period_time_condition_not_dropped (test_query.QueryTests.test_period_time_condition_not_dropped) ... ok
+test_period_types_not_silently_merged (test_query.QueryTests.test_period_types_not_silently_merged) ... ok
+test_plural_type (test_query.QueryTests.test_plural_type) ... ok
+test_population_sum_synonym_daily_mean (test_query.QueryTests.test_population_sum_synonym_daily_mean) ... ok
+test_population_sum_synonyms (test_query.QueryTests.test_population_sum_synonyms) ... ok
+test_route_not_senior_fare (test_query.QueryTests.test_route_not_senior_fare) ... ok
+test_senior (test_query.QueryTests.test_senior) ... ok
+test_short_date_tail_not_dropped (test_query.QueryTests.test_short_date_tail_not_dropped) ... ok
+test_single_group_conditions_not_dropped (test_query.QueryTests.test_single_group_conditions_not_dropped) ... ok
+test_slot_weekday_cross_group_refused (test_query.QueryTests.test_slot_weekday_cross_group_refused) ... ok
+test_standardization_cross_conditions_refused (test_query.QueryTests.test_standardization_cross_conditions_refused) ... ok
+test_standardization_explicit_plan (test_query.QueryTests.test_standardization_explicit_plan) ... ok
+test_standardization_single_period_refused (test_query.QueryTests.test_standardization_single_period_refused) ... ok
+test_standardization_total_refused (test_query.QueryTests.test_standardization_total_refused) ... ok
+test_static_example_buttons_supported (test_query.QueryTests.test_static_example_buttons_supported) ... ok
+test_sum_population_daily_metric (test_query.QueryTests.test_sum_population_daily_metric) ... ok
+test_supported_synonyms_no_wrong_default (test_query.QueryTests.test_supported_synonyms_no_wrong_default) ... ok
+test_time_group_survives_range_and_sum_defaults (test_query.QueryTests.test_time_group_survives_range_and_sum_defaults) ... ok
+test_total_hourly_conflict (test_query.QueryTests.test_total_hourly_conflict) ... ok
+test_total_synonyms_are_summary (test_query.QueryTests.test_total_synonyms_are_summary) ... ok
+test_two_months (test_query.QueryTests.test_two_months) ... ok
+test_unparsed_type_suffix_not_ignored (test_query.QueryTests.test_unparsed_type_suffix_not_ignored) ... ok
+test_unsupported_conditions_do_not_disappear (test_query.QueryTests.test_unsupported_conditions_do_not_disappear) ... ok
+test_unsupported_weather_and_recent (test_query.QueryTests.test_unsupported_weather_and_recent) ... ok
+test_value_sorted_request_refused (test_query.QueryTests.test_value_sorted_request_refused) ... ok
+test_weekday_group_note_matches_metric (test_query.QueryTests.test_weekday_group_note_matches_metric) ... ok
+test_weekday_group_survives_continuous_month_range (test_query.QueryTests.test_weekday_group_survives_continuous_month_range) ... ok
+test_weekday_not_confused_with_daily (test_query.QueryTests.test_weekday_not_confused_with_daily) ... ok
+test_weekday_start_order_clear_message (test_query.QueryTests.test_weekday_start_order_clear_message) ... ok
+test_weekday_weekend_grouping (test_query.QueryTests.test_weekday_weekend_grouping) ... ok
+test_year (test_query.QueryTests.test_year) ... ok
+test_youth (test_query.QueryTests.test_youth) ... ok
+test_analyze (test_server.HttpTests.test_analyze) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/analyze HTTP/1.1" 200 -
+ok
+test_bad_json (test_server.HttpTests.test_bad_json) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/analyze HTTP/1.1" 400 -
+ok
+test_catalog (test_server.HttpTests.test_catalog) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "GET /api/catalog HTTP/1.1" 200 -
+ok
+test_claim_check_requires_confirmation (test_server.HttpTests.test_claim_check_requires_confirmation) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-check HTTP/1.1" 400 -
+ok
+test_claim_direction_changed_requires_new_plan (test_server.HttpTests.test_claim_direction_changed_requires_new_plan) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-plan HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-check HTTP/1.1" 400 -
+ok
+test_claim_metric_not_implicit (test_server.HttpTests.test_claim_metric_not_implicit) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-plan HTTP/1.1" 400 -
+ok
+test_claim_plan_and_confirm (test_server.HttpTests.test_claim_plan_and_confirm) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-plan HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-check HTTP/1.1" 200 -
+ok
+test_claim_standardization_not_automatic (test_server.HttpTests.test_claim_standardization_not_automatic) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/claim-plan HTTP/1.1" 400 -
+ok
+test_origin (test_server.HttpTests.test_origin) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/analyze HTTP/1.1" 403 -
+ok
+test_plan (test_server.HttpTests.test_plan) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/plan HTTP/1.1" 200 -
+ok
+test_plan_mismatch (test_server.HttpTests.test_plan_mismatch) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "POST /api/analyze HTTP/1.1" 400 -
+ok
+test_secret (test_server.HttpTests.test_secret) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "GET /.env HTTP/1.1" 404 -
+ok
+test_static (test_server.HttpTests.test_static) ... 127.0.0.1 - - [12/Nov/2026 14:10:05] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 14:10:05] "GET /static/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2026 14:10:05] "GET /static/styles.css HTTP/1.1" 200 -
+ok
+test_actual_zero_and_undefined_percent (test_standardize.StandardizationTests.test_actual_zero_and_undefined_percent) ... ok
+test_all_selected_types_must_be_complete (test_standardize.StandardizationTests.test_all_selected_types_must_be_complete) ... ok
+test_equal_weekday_weights (test_standardize.StandardizationTests.test_equal_weekday_weights) ... ok
+test_json_serializable (test_standardize.StandardizationTests.test_json_serializable) ... ok
+test_missing_cell_blocks_both_values (test_standardize.StandardizationTests.test_missing_cell_blocks_both_values) ... ok
+test_missing_other_type_does_not_block_selected (test_standardize.StandardizationTests.test_missing_other_type_does_not_block_selected) ... ok
+test_multiple_types_additive (test_standardize.StandardizationTests.test_multiple_types_additive) ... ok
+test_narrative_separates_raw_and_standardized (test_standardize.StandardizationTests.test_narrative_separates_raw_and_standardized) ... ok
+test_no_records_not_zero (test_standardize.StandardizationTests.test_no_records_not_zero) ... ok
+test_optional_weekday_field (test_standardize.StandardizationTests.test_optional_weekday_field) ... ok
+test_original_result_preserved (test_standardize.StandardizationTests.test_original_result_preserved) ... ok
+test_real_sqlite_reference_when_bundled (test_standardize.StandardizationTests.test_real_sqlite_reference_when_bundled) ... ok
+test_short_period_missing_weekday_blocks (test_standardize.StandardizationTests.test_short_period_missing_weekday_blocks) ... ok
+test_validation_duplicate (test_standardize.StandardizationTests.test_validation_duplicate) ... ok
+test_validation_overlap (test_standardize.StandardizationTests.test_validation_overlap) ... ok
+
+----------------------------------------------------------------------
+Ran 205 tests in 1.830s
+
+OK

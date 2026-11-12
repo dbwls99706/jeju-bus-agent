@@ -1,0 +1,1 @@
+PASS: self-contained CSV metadata, BOM, source hash, units, unobserved state and formula-injection protection

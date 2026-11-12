@@ -1,0 +1,5 @@
+검사 대상: Windows x64 / CPython3.12 / 공식 PyTorch CPU wheel index
+torch (2.15.0+cpu)
+  INSTALLED: 2.15.0+cpu
+  LATEST:    2.15.0+cpu
+휠 제공 확인일 뿐 Windows 설치/실행 실측 아님.

@@ -1,0 +1,14 @@
+{
+  "weekday_grouping": null,
+  "kind": "single",
+  "dimension": "time",
+  "start_date": "2023-12-25",
+  "end_date": "2025-10-26",
+  "user_types": [
+    "일반"
+  ],
+  "periods": [],
+  "notes": [],
+  "question": "시간대 비교",
+  "mode": "rules"
+}

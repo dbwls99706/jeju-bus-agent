@@ -1,0 +1,249 @@
+{
+  "new_question": "일반 2024-01-01~2024-01-07과 2024-02-05~2024-02-11 일평균 비교",
+  "confirmed_plan": {
+    "extremum": "max",
+    "metric": "daily_mean",
+    "weekday_grouping": null,
+    "kind": "period_compare",
+    "dimension": "period_compare",
+    "start_date": "2024-01-01",
+    "end_date": "2024-02-11",
+    "user_types": [
+      "일반"
+    ],
+    "periods": [
+      {
+        "start": "2024-01-01",
+        "end": "2024-01-07",
+        "label": "기간 A"
+      },
+      {
+        "start": "2024-02-05",
+        "end": "2024-02-11",
+        "label": "기간 B"
+      }
+    ],
+    "notes": [
+      "질문에 명시한 날짜를 화면 날짜보다 우선 적용합니다.",
+      "질문에 명시한 이용자 유형을 우선 적용: 일반",
+      "두 기간의 일평균을 계산하고 관측률과 요일 구성비가 같을 때만 차이를 해석합니다.",
+      "표시 지표: 포함일수로 나눈 기록 일평균"
+    ],
+    "question": "일반 2024-01-01~2024-01-07과 2024-02-05~2024-02-11 일평균 비교",
+    "mode": "rules"
+  },
+  "result": {
+    "title": "두 기간의 승차 기록 비교",
+    "answer": "기간 A 2024-01-01~2024-01-07(7일), 기간 B 2024-02-05~2024-02-11(7일), 유형 일반. 두 기간이 완전 관측이고 요일 구성 비율이 같아 기술적 일평균 차이를 계산했습니다.",
+    "mode": "rules",
+    "plan": {
+      "extremum": "max",
+      "metric": "daily_mean",
+      "weekday_grouping": null,
+      "kind": "period_compare",
+      "dimension": "period_compare",
+      "start_date": "2024-01-01",
+      "end_date": "2024-02-11",
+      "user_types": [
+        "일반"
+      ],
+      "periods": [
+        {
+          "label": "기간 A",
+          "start_date": "2024-01-01",
+          "end_date": "2024-01-07"
+        },
+        {
+          "label": "기간 B",
+          "start_date": "2024-02-05",
+          "end_date": "2024-02-11"
+        }
+      ],
+      "notes": [
+        "질문에 명시한 날짜를 화면 날짜보다 우선 적용합니다.",
+        "질문에 명시한 이용자 유형을 우선 적용: 일반",
+        "두 기간의 일평균을 계산하고 관측률과 요일 구성비가 같을 때만 차이를 해석합니다.",
+        "표시 지표: 포함일수로 나눈 기록 일평균"
+      ],
+      "question": "일반 2024-01-01~2024-01-07과 2024-02-05~2024-02-11 일평균 비교",
+      "mode": "rules",
+      "formula": "각 기간의 관측 승차 합계 ÷ 각 기간의 달력일수; 완전 관측·요일 비율 일치 시에만 B-A와 (B-A)/A×100 계산"
+    },
+    "chart": {
+      "labels": [
+        "기간 A",
+        "기간 B"
+      ],
+      "values": [
+        11772.857,
+        15133.143
+      ],
+      "unit": "기록값 환산 명/일"
+    },
+    "table": [
+      {
+        "label": "기간 A",
+        "start_date": "2024-01-01",
+        "end_date": "2024-01-07",
+        "total": 82410,
+        "observed_cells": 49,
+        "expected_cells": 49,
+        "coverage": 1.0,
+        "missing_combinations": 0,
+        "days": 7,
+        "hours": null,
+        "per_hour": null,
+        "value": 11772.857,
+        "weekday_counts": {
+          "월": 1,
+          "화": 1,
+          "수": 1,
+          "목": 1,
+          "금": 1,
+          "토": 1,
+          "일": 1
+        },
+        "weekday_proportions": {
+          "월": 0.142857,
+          "화": 0.142857,
+          "수": 0.142857,
+          "목": 0.142857,
+          "금": 0.142857,
+          "토": 0.142857,
+          "일": 0.142857
+        },
+        "observation_status": "완전 관측"
+      },
+      {
+        "label": "기간 B",
+        "start_date": "2024-02-05",
+        "end_date": "2024-02-11",
+        "total": 105932,
+        "observed_cells": 49,
+        "expected_cells": 49,
+        "coverage": 1.0,
+        "missing_combinations": 0,
+        "days": 7,
+        "hours": null,
+        "per_hour": null,
+        "value": 15133.143,
+        "weekday_counts": {
+          "월": 1,
+          "화": 1,
+          "수": 1,
+          "목": 1,
+          "금": 1,
+          "토": 1,
+          "일": 1
+        },
+        "weekday_proportions": {
+          "월": 0.142857,
+          "화": 0.142857,
+          "수": 0.142857,
+          "목": 0.142857,
+          "금": 0.142857,
+          "토": 0.142857,
+          "일": 0.142857
+        },
+        "observation_status": "완전 관측"
+      }
+    ],
+    "comparison": {
+      "direction": "기간 B - 기간 A",
+      "difference": 3360.286,
+      "percent_change": 28.543,
+      "unit": "기록 명/일",
+      "eligible": true,
+      "complete_observation": true,
+      "same_weekday_proportions": true,
+      "reason": "두 기간이 완전 관측이고 요일 구성 비율이 같아 기술적 일평균 차이를 계산했습니다.",
+      "percent_note": null
+    },
+    "repair_proposal": null,
+    "quality": {
+      "comparable": true,
+      "reason": "두 기간이 완전 관측이고 요일 구성 비율이 같아 기술적 일평균 차이를 계산했습니다.",
+      "checks": [
+        "기간 범위·비중첩 확인",
+        "각 기간의 7시간구간×유형×날짜 관측률 대조",
+        "요일 구성 비율을 정확한 정수 교차곱으로 대조",
+        "기간별 합계 보존 확인",
+        "미기록 0 대체 없음"
+      ]
+    },
+    "insights": [
+      "기간 B - 기간 A의 기록 일평균 차이는 3,360.286명/일입니다. 기간 A 대비 28.543%입니다."
+    ],
+    "warnings": [
+      "질문에 명시한 날짜를 화면 날짜보다 우선 적용합니다.",
+      "질문에 명시한 이용자 유형을 우선 적용: 일반",
+      "두 기간의 일평균을 계산하고 관측률과 요일 구성비가 같을 때만 차이를 해석합니다.",
+      "표시 지표: 포함일수로 나눈 기록 일평균",
+      "승차 기록은 고유 이용자 수·차량 혼잡도·배차 부족을 뜻하지 않습니다.",
+      "요일 구성 일치는 기초 비교 조건일 뿐, 계절·공휴일·행사·서비스 변경을 통제하지 않습니다. 원인이나 통계적 유의성을 주장하지 않습니다.",
+      "미기록은 0으로 대체하지 않았습니다. 부분 관측 기간의 표시값은 기록 합계의 환산값이며 실제 일평균 추정치가 아닙니다.",
+      "자료에 정류장·노선·지역 열이 없어 공간적 범위나 노선별 상황을 확정하지 않습니다."
+    ],
+    "steps": [
+      {
+        "tool": "validate_periods",
+        "detail": "원본 범위 내 비중첩 두 기간과 유형 확인"
+      },
+      {
+        "tool": "aggregate_periods",
+        "detail": "각 기간의 합계·달력일수·관측 조합 계산"
+      },
+      {
+        "tool": "audit_missing",
+        "detail": "0/98 조합 미기록"
+      },
+      {
+        "tool": "compare_weekday_mix",
+        "detail": "요일 비율 일치"
+      },
+      {
+        "tool": "gate_comparison",
+        "detail": "두 기간이 완전 관측이고 요일 구성 비율이 같아 기술적 일평균 차이를 계산했습니다."
+      },
+      {
+        "tool": "verify_aggregate",
+        "detail": "기간별 합계와 선택 원본 합계 188,342 일치"
+      },
+      {
+        "tool": "report_evidence",
+        "detail": "조건 충족 시에만 차이·증감률 산출, 불충족 사유와 후속 질문 제공"
+      }
+    ],
+    "sources": [
+      {
+        "name": "일별시간대별버스승차인원수현황.csv",
+        "source_url": "https://www.jejudatahub.net/data/view/data/512",
+        "metadata_url": "https://data.edmgr.kr/dataView.do?id=jejudatahub-net-512",
+        "provenance": "교육부·KERIS 공식2차 메타상 cc-zero. 원본 현행약관·버전 바이트 동일성 미대조.",
+        "sha256": "acecf3fa511c68def3b68c34c29610dbda1101070f38e4be856cdcb123a4a529",
+        "rows_used": 98,
+        "row_number_samples": [
+          369,
+          376,
+          383,
+          390,
+          397,
+          404,
+          410,
+          417,
+          425,
+          433
+        ]
+      }
+    ],
+    "stats": {
+      "rows": 98,
+      "total": 188342,
+      "days": 14,
+      "missing_combinations": 0,
+      "observed_cells": 98,
+      "expected_cells": 98,
+      "coverage": 1.0
+    }
+  }
+}

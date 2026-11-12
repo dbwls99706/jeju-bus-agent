@@ -1,0 +1,1 @@
+PASS actual repair: original null difference retained through plan; no automatic analysis; four candidate dates; exact expected_plan; explicit confirmation changes result to 3360.286; CSV repair metadata; JS errors 0
