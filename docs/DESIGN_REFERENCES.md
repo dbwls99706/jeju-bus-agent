@@ -15,3 +15,10 @@ Carbon 및 GOV.UK는 공개 디자인 시스템을 참고한 출처입니다. �
 ## 보존 사항
 
 통계 계산과 질문 범위 검증은 바꾸지 않습니다. 브랜드 SVG 아이콘, 18px 기본 글자, 17px 보조 설명, 48px 이상 주요 조작, 키보드 초점과 움직임 줄이기 대응을 유지합니다. 장식 효과보다 실제 결과와 제한조건의 읽기 쉬움을 우선합니다. 데이터 미기록을0으로 간주하지 않으며 원기간 비교와 요일표준화의 다른 의미를 유지합니다.
+
+## 사용자 제안 Astryx 검토
+
+- 저장소: https://github.com/meta/astryx
+- 라이선스: https://github.com/meta/astryx/blob/main/LICENSE (MIT, Meta Platforms, Inc., 2026)
+- 공개 README상 Beta이며 React19+·StyleX 기반입니다. 기존 Python+표준 HTML 앱을 전면 교체하지 않고 구성 원칙을 참고합니다. Astryx 패키지나 CLI를 설치·실행하지 않았고, 실제 Astryx 컴포넌트를 사용한다고 주장하지 않습니다.
+- 공개 설계 초안: `docs/design/template-composition.md`, `spatial-hierarchy.md`, `agentic-states.md` (저장소 main 기준). 주행동을 선명하게, 문맥→주내용→보조정보 순서, 중첩 카드보다 여백·정렬, 진행·대기·결과 상태의 일관성을 참고합니다. 이 문서들은 draft 상태이므로 최종 확정 규칙·인증으로 표현하지 않습니다.

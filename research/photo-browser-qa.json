@@ -1,0 +1,44 @@
+{
+  "environment": "Linux cloud Chromium CUA",
+  "url": "http://127.0.0.1:8769/",
+  "tab": 51,
+  "date": "2026-11-12",
+  "photo": {
+    "src": "/static/stone-park-01.jpg",
+    "initial_natural_width": 5456,
+    "final_natural_width_after_reload": 960,
+    "pixel_render": "passed",
+    "caption_font_px": 18,
+    "visible_attribution": "Bernard Gagnon · 2022 · CC0 이용허락 · 사진 출처",
+    "visible_disclaimer": "제주 소개용 사진입니다. 분석 대상 장소를 뜻하지 않으며, 무장애 접근 가능성을 보장하지 않습니다.",
+    "caption_not_collapsed": true
+  },
+  "brand_rendered_width_px": 48,
+  "keyboard": {
+    "Enter_plan_confirmation": "passed",
+    "Enter_calculation": "passed",
+    "result_focus": "result-title",
+    "result_rows": 7
+  },
+  "reflow": {
+    "200_percent": {
+      "inner_width": 590,
+      "client_width": 582,
+      "document_scroll_width": 582
+    },
+    "400_percent": {
+      "inner_width": 295,
+      "client_width": 291,
+      "document_scroll_width": 291
+    },
+    "global_overflow": false,
+    "final_zoom": "100% native popup observed"
+  },
+  "local_qa_screenshot": "research/photo-hero.png (initial full-resolution variant; same composition)",
+  "limits": [
+    "Not physical mobile or exactly320px validation",
+    "No Windows, printing, screenreader or AI inference tests",
+    "Image provenance/license wording observed, not independently relicensed in this QA",
+    "Functional flow tested before same-image thumbnail replacement; final960px file loading and reflow separately confirmed"
+  ]
+}

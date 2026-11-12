@@ -52,7 +52,7 @@ def home():
 
 @app.get('/static/<name>')
 def static_file(name):
-    if name not in {'styles.css','app.js','favicon.svg','social-preview.png'}:return jsonify(error='찾을 수 없습니다.'),404
+    if name not in {'styles.css','app.js','favicon.svg','social-preview.png','stone-park-01.jpg'}:return jsonify(error='찾을 수 없습니다.'),404
     return send_from_directory('static',name)
 
 @app.get('/api/catalog')
