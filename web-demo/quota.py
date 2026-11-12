@@ -2,6 +2,8 @@
 
 Required env: QUOTA_REDIS_REST_URL, QUOTA_REDIS_REST_TOKEN, QUOTA_NAMESPACE,
 QUOTA_LIFETIME_LIMIT, QUOTA_DAILY_LIMIT, QUOTA_MINUTE_LIMIT.
+Vercel aliases KV_REST_API_URL/KV_REST_API_TOKEN are accepted when the
+corresponding QUOTA_REDIS_REST_* variable is unset/empty.
 Limits are positive integers with minute <= daily <= lifetime. Namespace is a
 stable identifier for ONE global budget, not a deployment, user, IP or session.
 Never rotate the namespace, delete/reset its keys, or use an ephemeral Redis
@@ -20,6 +22,10 @@ from dataclasses import dataclass, field
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+HARD_LIFETIME_LIMIT = 20000
+HARD_DAILY_LIMIT = 1000
+HARD_MINUTE_LIMIT = 10
 
 # All three persistent keys share a Redis Cluster hash tag. Redis server TIME,
 # not process time, defines UTC epoch-day and epoch-minute buckets. Each check
@@ -111,7 +117,7 @@ class QuotaConfig:
 
     @classmethod
     def from_env(cls):
-        token = os.environ.get('QUOTA_REDIS_REST_TOKEN', '')
+        token = os.environ.get('QUOTA_REDIS_REST_TOKEN') or os.environ.get('KV_REST_API_TOKEN', '')
         namespace = os.environ.get('QUOTA_NAMESPACE', '')
         if not token or token != token.strip() or any(ord(c) < 33 or ord(c) > 126 for c in token):
             raise QuotaUnavailable('Redis quota credentials are not configured.')
@@ -120,9 +126,11 @@ class QuotaConfig:
         life = _limit(os.environ.get('QUOTA_LIFETIME_LIMIT', ''))
         daily = _limit(os.environ.get('QUOTA_DAILY_LIMIT', ''))
         minute = _limit(os.environ.get('QUOTA_MINUTE_LIMIT', ''))
+        if life > HARD_LIFETIME_LIMIT or daily > HARD_DAILY_LIMIT or minute > HARD_MINUTE_LIMIT:
+            raise QuotaUnavailable('Quota configuration exceeds the approved hard cap.')
         if not minute <= daily <= life:
             raise QuotaUnavailable('Quota limits must satisfy minute <= daily <= lifetime.')
-        return cls(_url(os.environ.get('QUOTA_REDIS_REST_URL', '')), token, namespace, life, daily, minute)
+        return cls(_url(os.environ.get('QUOTA_REDIS_REST_URL') or os.environ.get('KV_REST_API_URL', '')), token, namespace, life, daily, minute)
 
 
 def _post(config, command):
@@ -147,7 +155,9 @@ class RedisQuota:
                 or not config.token or config.token != config.token.strip()
                 or any(ord(c) < 33 or ord(c) > 126 for c in config.token)
                 or any(type(n) is not int or not 1 <= n <= 2147483647 for n in (config.lifetime, config.daily, config.minute))
-                or not config.minute <= config.daily <= config.lifetime):
+                or not config.minute <= config.daily <= config.lifetime
+                or config.lifetime > HARD_LIFETIME_LIMIT or config.daily > HARD_DAILY_LIMIT
+                or config.minute > HARD_MINUTE_LIMIT):
             raise QuotaUnavailable('Quota configuration is invalid.')
         self.config = config
 

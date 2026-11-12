@@ -1,5 +1,9 @@
 """Public aggregate-data web app; no paid AI calls enabled."""
 import os
+import re
+from datetime import date
+from openai_planner import classify_question, validate_question, PlannerUnavailable, MODEL
+from quota import RedisQuota, QuotaUnavailable
 from urllib.parse import urlsplit
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.exceptions import HTTPException
@@ -41,6 +45,8 @@ def home():
         html=html.replace('실제 데이터·AI 없는 절차 시연','실제 제주 버스 승차 집계 분석 · 현재 AI 미사용')
         html=html.replace('아래 체험은 합성 예제와 규칙만 사용합니다. 실제 제주 승차 기록이나 AI 응답이 아닙니다.','실제 제주 버스 승차 집계 37,057행을 분석합니다. 현재 AI 없이 검증된 계산식으로 집계합니다. 출처·이용조건과 해석 한계는 자료 정보에서 확인하세요.')
         html=html.replace('합성 예제 · AI 미사용','실제 집계 · AI 미사용').replace('합성 자료로 분석 절차를 체험하세요','실제 제주 버스 기록을 근거와 함께 살펴보세요')
+    if ai_ready():
+        html=html.replace('현재 AI 미사용','기본 계산은 AI 미사용 · AI 분류 선택 가능').replace('현재 AI 없이 검증된 계산식으로 집계합니다.','기본 집계는 검증된 계산식으로 처리합니다. 아래 별도 AI 버튼으로 분석 종류 분류를 요청할 수 있습니다.').replace('실제 집계 · AI 미사용','실제 집계 · AI 분류 선택 가능')
     return html
 
 
@@ -53,8 +59,70 @@ def static_file(name):
 def metadata():
     result=catalog()
     result['data_kind']=get_mode()
-    result['ai_enabled']=False
+    result['ai_enabled']=ai_ready()
+    result['ai_role']='질문의 분석 종류만 분류; 숫자 계산은 Python 규칙'
+    result['ai_model']=MODEL if result['ai_enabled'] else None
     return jsonify(result)
+
+
+def ai_ready():
+    if os.environ.get('AI_ENABLED') != '1' or not os.environ.get('OPENAI_API_KEY', '').strip():
+        return False
+    try:
+        RedisQuota.from_env()
+        return True
+    except (ValueError, TypeError):
+        return False
+
+
+def canonical_ai_request(data, dimension):
+    axes={'time':'시간대별','weekday':'요일별','month':'월별','user_type':'유형별'}
+    metrics={'total':'합계','daily':'일평균','hourly':'시간당 일평균'}
+    start,end,user_type,metric=(data.get(k) for k in ('start_date','end_date','user_type','metric'))
+    if dimension not in axes or metric not in metrics:
+        raise ValueError('Invalid choice')
+    if metric == 'hourly' and dimension != 'time':
+        raise ValueError('시간당 평균은 시간대 비교에서만 사용할 수 있습니다. 일평균 또는 합계를 선택하세요.')
+    for value in (start,end):
+        if not isinstance(value,str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',value):
+            raise ValueError('날짜를 선택하세요.')
+        date.fromisoformat(value)
+    meta=catalog()
+    if not isinstance(user_type,str) or user_type not in meta['user_types']+['전체']:
+        raise ValueError('유형을 선택하세요.')
+    if not meta['min_date'] <= start <= end <= meta['max_date']:
+        raise ValueError('자료 범위 안의 날짜를 선택하세요.')
+    population='전체 이용자' if user_type=='전체' else user_type
+    return {'question':f'{start}~{end} {population} {axes[dimension]} {metrics[metric]} 분석',
+            'start_date':start,'end_date':end,'user_type':user_type}
+
+
+@app.post('/api/ai-plan')
+def ai_plan():
+    data=request.get_json()
+    if not isinstance(data,dict) or data.get('scope_ack') is not True:
+        return jsonify(error='AI는 분석 종류만 분류하며 날짜·유형·계산방식은 화면 선택만 적용한다는 안내에 동의해 주세요.'),400
+    try:
+        question=validate_question(data.get('question'))
+        # Validate filters and calculation BEFORE any paid classification.
+        initial=canonical_ai_request(data,'time')
+        prepare_analysis(**initial)
+    except (ValueError,TypeError,KeyError):
+        return jsonify(error='질문은 300자 이내로 입력하고 자료 범위 안의 날짜·유형·계산방식을 선택해 주세요.'),400
+    if not ai_ready():
+        return jsonify(error='AI가 활성화되지 않았습니다. 기존 조건 선택 분석을 이용해 주세요.'),503
+    try:
+        dimension=classify_question(question,reserve_call=RedisQuota.from_env().reserve_call)
+        if dimension=='reject':
+            return jsonify(error='AI가 지원하는 분석 종류로 분류하지 못했습니다. 조건 선택 분석을 이용해 주세요.',ai_executed=True),422
+        original=canonical_ai_request(data,dimension)
+        plan=prepare_analysis(**original)
+        return jsonify(plan=plan,canonical_request=original,ai_executed=True,ai_model=MODEL,
+                       ai_dimension=dimension,ai_scope='분석 종류만 AI 분류. 날짜·유형·계산방식은 화면 선택만 적용. 계산은 Python 규칙.')
+    except (PlannerUnavailable,QuotaUnavailable):
+        return jsonify(error='AI 호출이 허용되지 않거나 응답을 사용할 수 없습니다. 자동 재시도하지 않았습니다. 조건 선택 분석은 계속 사용할 수 있습니다.'),503
+    except (ValueError,TypeError,KeyError):
+        return jsonify(error='AI가 고른 분석 종류에 현재 계산방식을 적용할 수 없습니다. 시간당 평균 대신 일평균·합계를 선택하거나 조건 선택 분석을 이용해 주세요.',ai_executed=True),422
 
 @app.post('/api/<operation>')
 def api(operation):

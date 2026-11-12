@@ -21,6 +21,20 @@ class QuotaTests(unittest.TestCase):
             with self.subTest(key=key),patch.dict(os.environ,{key:''}):
                 with self.assertRaises(q.QuotaUnavailable):q.RedisQuota.from_env()
         self.post.assert_not_called()
+    def test_vercel_aliases(self):
+        with patch.dict(os.environ, {'QUOTA_REDIS_REST_URL':'','QUOTA_REDIS_REST_TOKEN':'',
+                'KV_REST_API_URL':'https://example.upstash.io','KV_REST_API_TOKEN':'alias-test'}):
+            config=q.QuotaConfig.from_env()
+            self.assertEqual(config.url,'https://example.upstash.io')
+            self.assertEqual(config.token,'alias-test')
+        self.post.assert_not_called()
+    def test_hard_caps_cannot_be_raised_by_env_or_direct_config(self):
+        for key,value in [('QUOTA_LIFETIME_LIMIT','20001'),('QUOTA_DAILY_LIMIT','1001'),('QUOTA_MINUTE_LIMIT','11')]:
+            with patch.dict(os.environ, {key:value}):
+                with self.assertRaises(q.QuotaUnavailable):q.RedisQuota.from_env()
+        with self.assertRaises(q.QuotaUnavailable):
+            q.RedisQuota(q.QuotaConfig('https://example.upstash.io','test','namespace',20001,1000,10))
+        self.post.assert_not_called()
     def test_bad_limits(self):
         for value in ('0','-1','1.2','1e3',' 10','2147483648','true'):
             with patch.dict(os.environ,{'QUOTA_LIFETIME_LIMIT':value}):
