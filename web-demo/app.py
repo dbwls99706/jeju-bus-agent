@@ -36,7 +36,7 @@ def home(): return send_from_directory('static','index.html')
 
 @app.get('/static/<name>')
 def static_file(name):
-    if name not in {'styles.css','app.js','local-csv.js','local-csv.css','favicon.svg'}:return jsonify(error='찾을 수 없습니다.'),404
+    if name not in {'styles.css','app.js','local-csv.js','local-csv.css','favicon.svg','social-preview.png'}:return jsonify(error='찾을 수 없습니다.'),404
     return send_from_directory('static',name)
 
 @app.get('/api/catalog')
