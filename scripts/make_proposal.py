@@ -7,18 +7,18 @@ from reportlab.lib.colors import HexColor
 from pathlib import Path
 pdfmetrics.registerFont(TTFont('Korean','../jeju-agent/tmp/pdfs/NanumGothic-Regular.ttf'))
 P=ParagraphStyle('body',fontName='Korean',fontSize=11,leading=19,textColor=HexColor('#243b39'),wordWrap='CJK')
-c=canvas.Canvas('output/pdf/bus-guide-proposal.pdf',pagesize=(595,842));c.setTitle('제주 버스 데이터 길잡이 | 제출용 기획서')
+c=canvas.Canvas('output/pdf/bus-guide-proposal.pdf',pagesize=(595,842));c.setTitle('버스여울: 제주 버스 데이터의 흐름을 읽는 AI 에이전트 | 제출용 기획서')
 def page(n,title,subtitle):
  c.setFillColor(HexColor('#f6f4ed'));c.rect(0,0,595,842,fill=1,stroke=0)
  c.setFillColor(HexColor('#1c5c50'));c.rect(0,800,595,42,fill=1,stroke=0)
- c.setFont('Korean',10);c.setFillColor(HexColor('#ffffff'));c.drawString(38,816,'버스 데이터 길잡이  /  제주 AI·빅데이터 활용 AI Agent 개발 챌린지')
+ c.setFont('Korean',10);c.setFillColor(HexColor('#ffffff'));c.drawString(38,816,'버스여울  /  제주 AI·빅데이터 활용 AI Agent 개발 챌린지')
  c.setFillColor(HexColor('#1c5c50'));c.setFont('Korean',25);c.drawString(38,752,title)
  c.setFont('Korean',11);c.drawString(38,724,subtitle)
  c.setFont('Korean',9);c.setFillColor(HexColor('#687a76'));c.drawString(38,28,'제출용 기획서 · 2026-11-12 · 검증 범위 및 제한 사항: 6쪽');c.drawRightString(557,28,str(n))
 def block(y,heading,text):
  c.setFillColor(HexColor('#d26435'));c.setFont('Korean',14);c.drawString(38,y,heading)
  para=Paragraph(text,P);w,h=para.wrap(519,y-80);para.drawOn(c,38,y-18-h);return y-48-h
-page(1,'제주 버스 데이터 길잡이','질문에 맞는 통계, 계산 근거와 빈칸까지 함께 읽습니다')
+page(1,'버스여울','제주 버스 데이터의 흐름을 읽는 AI 에이전트')
 y=675
 y=block(y,'해결할 문제','승차 집계 CSV가 공개되어도 비전문가는 날짜 필터, 시간 구간의 길이, 미기록을 고려한 비교를 직접 하기 어렵습니다. 단순한 합계나 그럴듯한 AI 답변은 자료가 말하지 않는 혼잡도·노선 정보를 만들어낼 위험이 있습니다.')
 y=block(y,'사용자와 활용','제주 도민과 센터 이용자가 과거 승차 기록을 읽고, 시간대·요일·월·유형별 변화에 대한 질문을 데이터로 확인합니다. 자료 해석 교육, 공공 통계 이해, 후속 조사 질문 정리에 활용합니다. 특정 노선 추천이나 배차 정책 결정 도구는 아닙니다.')

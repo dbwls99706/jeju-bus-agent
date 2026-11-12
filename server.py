@@ -40,5 +40,5 @@ class Handler(BaseHTTPRequestHandler):
         except Exception:return self.send(500,{'error':'분석 중 오류. 자료 상태를 확인하세요.'})
 if __name__=='__main__':
     port=int(os.environ.get('PORT','8765'))
-    print(f'제주 버스 데이터 길잡이: http://127.0.0.1:{port}',flush=True)
+    print(f'버스여울: http://127.0.0.1:{port}',flush=True)
     ThreadingHTTPServer(('127.0.0.1',port),Handler).serve_forever()

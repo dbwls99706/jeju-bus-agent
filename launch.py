@@ -69,7 +69,7 @@ def main():
         url=f'http://127.0.0.1:{server.server_port}'
         print(f'원본 확인 완료: {meta["rows"]:,}개 기록. 외부로 업로드하지 않습니다.',flush=True)
         print('실행 모드: '+('로컬 AI(첫 질문 시 모델 로딩)' if os.environ.get('BUS_MODEL_DIR') else '규칙 기반'),flush=True)
-        print('제주 버스 데이터 길잡이: '+url,flush=True)
+        print('버스여울: '+url,flush=True)
         print('이 창을 유지하세요. 종료: Ctrl+C. 브라우저가 안 열리면 위 주소로 접속하세요.',flush=True)
         if os.environ.get('BUS_OPEN_BROWSER','1')!='0':
             timer=threading.Timer(.3,open_browser,args=(url,meta['sha256']));timer.daemon=True;timer.start()
