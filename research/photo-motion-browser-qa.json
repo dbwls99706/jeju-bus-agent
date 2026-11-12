@@ -1,0 +1,27 @@
+{
+  "environment": "Linux cloud Chromium, local http://127.0.0.1:8765/, tab 2",
+  "checks": {
+    "photo_guide_removed": true,
+    "credit_font": "14px",
+    "credit_visible": "Bernard Gagnon · 2022 · CC0 이용허락 · 사진 출처",
+    "desktop_visual_legibility": "readable and unclipped; smaller than main text",
+    "animation_name": "photo-settle",
+    "animation_duration": "3s",
+    "animation_iteration_count": "1",
+    "animation_timing": "ease-out",
+    "settled_opacity": "1",
+    "settled_transform": "matrix(1, 0, 0, 1, 0, 0)",
+    "core_three_statistical_cautions_preserved": true,
+    "desktop_width": 1180,
+    "client_width": 1165,
+    "scroll_width": 1165,
+    "horizontal_overflow": false
+  },
+  "limits": [
+    "No new narrow-width or zoom pass in this change-specific check; concurrent video work coordination",
+    "Reduced-motion preference and print media behavior not experimentally activated",
+    "Animation computed CSS and final settled appearance verified; not frame-by-frame measurement",
+    "Not Windows, physical mobile or screen-reader validation"
+  ],
+  "handoff": "Tab 2 at header, unchanged desktop zoom; available for video capture"
+}

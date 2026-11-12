@@ -14,3 +14,5 @@
 웹 표시에는 Wikimedia Commons가 제공하는960×639 공식 썸네일을 사용합니다(직접 이미지 변환 없음).
 https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Jeju_Stone_Park_01.jpg/960px-Jeju_Stone_Park_01.jpg
 로컬 파일: `static/stone-park-01.jpg`. 원본 대용량을 매번 불러오지 않도록 이 공식 파생 이미지를 동봉합니다.
+
+UI에서는 장소 이름과 저자·연도·CC0·원출처 링크를 보조 표기로 제공합니다. 사진은 초기 3초 동안 4px 이동하는 한 번의 미세 전환만 적용하며 반복하지 않습니다. `prefers-reduced-motion: reduce`와 인쇄에서는 애니메이션을 끕니다. 추가 스크립트·영상·이미지 요청은 없습니다.
